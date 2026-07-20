@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metodologia | Imagine Labs — Portal Spassu</title>
+<meta name="description" content="Metodologia de consultoria digital do Imagine Labs — as 14 etapas do desafio do cliente ao produto de IA em produção.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="sp-chrome">
+
+  <!-- Topbar — logo + nome do site (simulação SharePoint) -->
+  <div class="sp-topbar">
+    <div class="sp-topbar__logo"><img src="assets/symbol-spassu-laranja.svg" alt="Spassu"></div>
+    <span class="sp-topbar__title">Imagine Labs · Portal Spassu</span>
+    <div class="sp-topbar__meta">
+      <span class="sp-topbar__meta-item">☆ Favoritar</span>
+      <span class="sp-topbar__meta-item">👥 Equipe</span>
+    </div>
+  </div>
+
+  <!-- Toolbar — ações da página (simulação modo SharePoint) -->
+  <div class="sp-toolbar">
+    <div class="sp-toolbar__actions">
+      <span>+ Novo</span>
+      <span>Detalhes da página</span>
+      <span>Visualização</span>
+      <span>Análises</span>
+    </div>
+    <div class="sp-toolbar__right">
+      <span>Compartilhar</span>
+      <span class="sp-toolbar__edit">Editar</span>
+    </div>
+  </div>
+
+  <div class="sp-body">
+    <!-- Sidenav lateral expandida — páginas do site -->
+    <nav class="sp-sidenav">
+      <a href="index.html" class="sp-sidenav__item">Studio Imagine Labs</a>
+      <details class="sp-sidenav__group">
+        <summary>Frameworks<span class="chevron">▾</span></summary>
+        <div class="sp-sidenav__submenu">
+          <a href="imagine-labs.html" class="sp-sidenav__subitem">Imagine Labs</a>
+          <a href="imagine-ia.html" class="sp-sidenav__subitem">Imagine IA</a>
+          <a href="imagine-insights.html" class="sp-sidenav__subitem">Imagine Insights</a>
+        </div>
+      </details>
+      <details class="sp-sidenav__group" open>
+        <summary class="sp-sidenav__item--active">Metodologia<span class="chevron">▾</span></summary>
+        <div class="sp-sidenav__submenu">
+          <a href="etapa-01-product-discovery.html" class="sp-sidenav__subitem">01 · Product Discovery</a>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">02 · Fluxo AS IS</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">03 · Gaps e Soluções</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">04 · Fluxo TO BE</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">05 · Casos de Uso</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">06 · Protótipo</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">07 · Solução Imagine IA</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">08 · PRD</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">09 · TechSpec</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">10 · Plano Agentic</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">11 · Execução Frontier</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">12 · Validação</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">13 · Governança</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">14 · Implantação</span>
+        </div>
+      </details>
+      <a href="produtos.html" class="sp-sidenav__item">Produtos</a>
+      <a href="consultoria.html" class="sp-sidenav__item">Consultoria</a>
+      <a href="hub.html" class="sp-sidenav__item">Hub de Recursos</a>
+    </nav>
+
+    <!-- Conteúdo da página -->
+    <div class="sp-content">
+
+<!-- ============ NAVEGAÇÃO ============ -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo"><img src="assets/symbol-spassu-laranja.svg" alt="Spassu" height="28"></a>
+    <ul class="nav__links">
+      <li><a href="index.html" class="nav__link">Studio Imagine Labs</a></li>
+      <li><a href="imagine-labs.html" class="nav__link">Frameworks</a></li>
+      <li><a href="metodologia.html" class="nav__link nav__link--active">Metodologia</a></li>
+      <li><a href="produtos.html" class="nav__link">Produtos</a></li>
+      <li><a href="consultoria.html" class="nav__link">Consultoria</a></li>
+      <li><a href="hub.html" class="nav__link">Hub de Recursos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ 1. HERO laranja centrado — webpart SP: Hero ============ -->
+  <section class="hero hero--centered">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <h1 class="hero__title">Metodologia</h1>
+        <p class="hero__subtitle">Metodologia de consultoria digital do Imagine Labs com 14 etapas — do desafio do cliente ao produto de IA em produção</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. DOIS STUDIOS — webpart SP: Highlighted Content ============ -->
+  <section class="section section--white">
+    <div class="container">
+      <p class="section__subtitle mb-32">Este é o framework técnico de execução — como construímos produtos de IA, passo a passo. Para a visão institucional mais ampla (pilares, governança, indicadores de negócio), veja o <a href="imagine-labs.html" class="text-orange fw-700">Framework Imagine Labs</a>.</p>
+      <div class="section__header">
+        <h2 class="section__title">Dois Studios · Sinérgicos e Complementares</h2>
+        <p class="section__subtitle">Atuam de forma sinérgica, iterativa e adaptável ao contexto do cliente.</p>
+      </div>
+      <div class="cards-grid cards-grid--2col">
+
+        <div class="card card--cinza">
+          <div class="card__body">
+            <span class="badge badge--orange">Studio 01</span>
+            <h3 class="card__title mt-8">INSIGHTS</h3>
+            <p class="card__subtitle">Da Complexidade à Clareza Estratégica</p>
+            <span class="card__label mt-16">Métodos</span>
+            <p class="card__methods">Design Thinking · Lean Inception<br>Value Stream Mapping · Customer Journey Mapping</p>
+          </div>
+        </div>
+
+        <div class="card card--navy">
+          <div class="card__body">
+            <span class="badge badge--white">Studio 02</span>
+            <h3 class="card__title mt-8">CODE</h3>
+            <p class="card__subtitle">IA aplicada para acelerar decisões, produtos e operações</p>
+            <span class="card__label mt-16">Métodos</span>
+            <p class="card__methods">Agentes Inteligentes · Experiências Multimodais<br>Produtos de IA Aplicada · RAG &amp; Bases de Conhecimento</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. FRAMEWORK DIAGRAM — webpart SP: Image ============ -->
+  <section class="section section--cinza">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">A Metodologia</h2>
+        <p class="section__subtitle">Diagrama das 14 etapas divididas entre Studio Insights e Studio Code</p>
+      </div>
+      <div class="img-placeholder">
+        <svg class="img-placeholder__icon" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <rect width="48" height="48" rx="6" fill="#D0D0D0"/>
+          <path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/>
+          <circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+        </svg>
+        <span class="img-placeholder__caption">Diagrama do Framework · Exportar de Figma/PPT e publicar via Image webpart.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. AS 14 ETAPAS EM DETALHE — webpart SP: Text (2 colunas) ============ -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">As 14 Etapas em Detalhe</h2>
+        <p class="section__subtitle">Cada etapa tem propósito explícito — este é o método utilizado para todo produto de IA.</p>
+      </div>
+
+      <div class="etapas-grid">
+
+        <!-- Bloco 1 — Studio INSIGHTS -->
+        <div class="etapas-bloco">
+          <div class="etapas-bloco__header etapas-bloco__header--insights">Bloco 1 · Studio INSIGHTS (Etapas 01–06)</div>
+
+          <div class="etapa">
+            <span class="etapa__num">01</span>
+            <div>
+              <div class="etapa__name">Product Discovery</div>
+              <p class="etapa__desc">Investigamos problema, usuários, necessidades de negócio e oportunidades de valor.</p>
+            </div>
+          </div>
+          <div class="etapa">
+            <span class="etapa__num">02</span>
+            <div>
+              <div class="etapa__name">Fluxo Operacional AS IS</div>
+              <p class="etapa__desc">Mapeamos a operação atual: etapas, atores, sistemas, gargalos e fricções.</p>
+            </div>
+          </div>
+          <div class="etapa">
+            <span class="etapa__num">03</span>
+            <div>
+              <div class="etapa__name">Gaps e Soluções</div>
+              <p class="etapa__desc">Comparamos cenário atual com objetivos: lacunas, oportunidades e caminhos.</p>
+            </div>
+          </div>
+          <div class="etapa">
+            <span class="etapa__num">04</span>
+            <div>
+              <div class="etapa__name">Fluxo de Valor TO BE</div>
+              <p class="etapa__desc">Desenhamos o fluxo futuro conectando experiência, operação e tecnologia.</p>
+            </div>
+          </div>
+          <div class="etapa">
+            <span class="etapa__num">05</span>
+            <div>
+              <div class="etapa__name">Casos de Uso</div>
+              <p class="etapa__desc">Priorizamos aplicações reais: onde gera impacto, para quem, com quais benefícios.</p>
+            </div>
+          </div>
+          <div class="etapa">
+            <span class="etapa__num">06</span>
+            <div>
+              <div class="etapa__name">Protótipo Code-Based</div>
+              <p class="etapa__desc">Criamos protótipo funcional para tangibilizar a solução e acelerar decisões.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloco 2 — Studio CODE -->
+        <div class="etapas-bloco">
+          <div class="etapas-bloco__header etapas-bloco__header--code">Bloco 2 · Studio CODE (Etapas 07–14)</div>
+
+          <div class="etapa">
+            <span class="etapa__num">07</span>
+            <div>
+              <div class="etapa__name">Solução Imagine IA</div>
+              <p class="etapa__desc">Consolidamos a visão; conectamos problema, fluxo, casos de uso e proposta tecnológica.</p>
+            </div>
+          </div>
+          <div class="etapa">
+            <span class="etapa__num">08</span>
+            <div>
+              <div class="etapa__name">PRD</div>
+              <p class="etapa__desc">Traduzimos a solução em requisitos de produto, regras e critérios de sucesso.</p>
+            </div>
+          </div>
+          <div class="etapa">
+            <span class="etapa__num">09</span>
+            <div>
+              <div class="etapa__name">TechSpec</div>
+              <p class="etapa__desc">Definimos arquitetura, integrações, componentes, modelos, dados e segurança.</p>
+            </div>
+          </div>
+          <div class="etapa">
+            <span class="etapa__num">10</span>
+            <div>
+              <div class="etapa__name">Plano Agentic</div>
+              <p class="etapa__desc">Tarefas para agentes: prioridades, dependências, contexto e aceite.</p>
+            </div>
+          </div>
+          <div class="etapa">
+            <span class="etapa__num">11</span>
+            <div>
+              <div class="etapa__name">Execução Frontier</div>
+              <p class="etapa__desc">Agentes executam o desenvolvimento assistido — código, fluxos e integrações.</p>
+            </div>
+          </div>
+          <div class="etapa">
+            <span class="etapa__num">12</span>
+            <div>
+              <div class="etapa__name">Validação e Testes</div>
+              <p class="etapa__desc">Testes de integração, revisão funcional e aderência aos requisitos.</p>
+            </div>
+          </div>
+          <div class="etapa">
+            <span class="etapa__num">13</span>
+            <div>
+              <div class="etapa__name">Governança</div>
+              <p class="etapa__desc">Revisão técnica, controle de mudanças, documentação e aprovação.</p>
+            </div>
+          </div>
+          <div class="etapa">
+            <span class="etapa__num">14</span>
+            <div>
+              <div class="etapa__name">Implantação e Evolução</div>
+              <p class="etapa__desc">Publicamos e mantemos ciclo contínuo de aprendizado, ajustes e novas entregas.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER (fundo laranja) ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <span class="footer__brand"><img src="assets/logo-imagine-labs-branco.svg" alt="Imagine Labs" height="22"></span>
+    <nav class="footer__links" aria-label="Navegação do rodapé">
+      <a href="imagine-labs.html" class="footer__link">Frameworks</a>
+      <a href="metodologia.html" class="footer__link">Metodologia</a>
+      <a href="produtos.html" class="footer__link">Produtos</a>
+      <a href="consultoria.html" class="footer__link">Consultoria</a>
+      <a href="hub.html" class="footer__link">Hub de Recursos</a>
+    </nav>
+    <span class="footer__copy">© 2026 Spassu. Uso interno.</span>
+  </div>
+</footer>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

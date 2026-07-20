@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orquestra | Imagine Labs — Portal Spassu</title>
+<meta name="description" content="Orquestra — plataforma de orquestração de agentes de IA da Imagine Labs, Spassu. Em breve.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="sp-chrome">
+
+  <!-- Topbar — logo + nome do site (simulação SharePoint) -->
+  <div class="sp-topbar">
+    <div class="sp-topbar__logo"><img src="assets/symbol-spassu-laranja.svg" alt="Spassu"></div>
+    <span class="sp-topbar__title">Imagine Labs · Portal Spassu</span>
+    <div class="sp-topbar__meta">
+      <span class="sp-topbar__meta-item">☆ Favoritar</span>
+      <span class="sp-topbar__meta-item">👥 Equipe</span>
+    </div>
+  </div>
+
+  <!-- Toolbar — ações da página (simulação modo SharePoint) -->
+  <div class="sp-toolbar">
+    <div class="sp-toolbar__actions">
+      <span>+ Novo</span>
+      <span>Detalhes da página</span>
+      <span>Visualização</span>
+      <span>Análises</span>
+    </div>
+    <div class="sp-toolbar__right">
+      <span>Compartilhar</span>
+      <span class="sp-toolbar__edit">Editar</span>
+    </div>
+  </div>
+
+  <div class="sp-body">
+    <!-- Sidenav lateral expandida — páginas do site (Orquestra não tem item próprio; vive dentro de Produtos) -->
+    <nav class="sp-sidenav">
+      <a href="index.html" class="sp-sidenav__item">Studio Imagine Labs</a>
+      <details class="sp-sidenav__group">
+        <summary>Frameworks<span class="chevron">▾</span></summary>
+        <div class="sp-sidenav__submenu">
+          <a href="imagine-labs.html" class="sp-sidenav__subitem">Imagine Labs</a>
+          <a href="imagine-ia.html" class="sp-sidenav__subitem">Imagine IA</a>
+          <a href="imagine-insights.html" class="sp-sidenav__subitem">Imagine Insights</a>
+        </div>
+      </details>
+      <details class="sp-sidenav__group">
+        <summary>Metodologia<span class="chevron">▾</span></summary>
+        <div class="sp-sidenav__submenu">
+          <a href="etapa-01-product-discovery.html" class="sp-sidenav__subitem">01 · Product Discovery</a>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">02 · Fluxo AS IS</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">03 · Gaps e Soluções</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">04 · Fluxo TO BE</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">05 · Casos de Uso</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">06 · Protótipo</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">07 · Solução Imagine IA</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">08 · PRD</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">09 · TechSpec</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">10 · Plano Agentic</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">11 · Execução Frontier</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">12 · Validação</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">13 · Governança</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">14 · Implantação</span>
+        </div>
+      </details>
+      <a href="produtos.html" class="sp-sidenav__item sp-sidenav__item--active">Produtos</a>
+      <a href="consultoria.html" class="sp-sidenav__item">Consultoria</a>
+      <a href="hub.html" class="sp-sidenav__item">Hub de Recursos</a>
+    </nav>
+
+    <!-- Conteúdo da página -->
+    <div class="sp-content">
+
+<!-- ============ NAVEGAÇÃO ============ -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo"><img src="assets/symbol-spassu-laranja.svg" alt="Spassu" height="28"></a>
+    <ul class="nav__links">
+      <li><a href="index.html" class="nav__link">Studio Imagine Labs</a></li>
+      <li><a href="imagine-labs.html" class="nav__link">Frameworks</a></li>
+      <li><a href="metodologia.html" class="nav__link">Metodologia</a></li>
+      <li><a href="produtos.html" class="nav__link nav__link--active">Produtos</a></li>
+      <li><a href="consultoria.html" class="nav__link">Consultoria</a></li>
+      <li><a href="hub.html" class="nav__link">Hub de Recursos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ 1. HERO (navy) — webpart SP: Hero ============ -->
+  <section class="hero hero--navy">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <span class="badge badge--white mb-16">Em breve</span>
+        <h1 class="hero__title">Orquestra</h1>
+        <p class="hero__subtitle">Plataforma de orquestração de agentes de IA para automação de fluxos complexos.</p>
+      </div>
+      <div class="hero__image">
+        <svg class="img-placeholder__icon" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <rect width="48" height="48" rx="6" fill="#FFFFFF"/>
+          <path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#FFFFFF"/>
+          <circle cx="34" cy="14" r="4" fill="#FFFFFF"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. O QUE É O ORQUESTRA — webpart SP: Text ============ -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section__header">
+        <span class="fs-label fw-700 text-orange">Sobre o produto</span>
+        <h2 class="section__title">O que é o Orquestra</h2>
+        <p class="section__subtitle">Plataforma de orquestração de agentes de IA para automação de fluxos complexos, em desenvolvimento pela Imagine IA (Studio 2).</p>
+      </div>
+      <div class="cards-grid cards-grid--2col">
+        <div class="card card--soon">
+          <div class="card__body">
+            <span class="card__badge">Em definição</span>
+            <h3 class="card__title">Capacidades</h3>
+            <p class="card__text">Detalhes de capacidades e casos de uso serão publicados na fase de lançamento.</p>
+          </div>
+        </div>
+        <div class="card card--soon">
+          <div class="card__body">
+            <span class="card__badge">Em desenvolvimento</span>
+            <h3 class="card__title">Status</h3>
+            <p class="card__text">Produto em desenvolvimento pela Imagine IA, sem data de lançamento confirmada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. CTA ACESSO ANTECIPADO — webpart SP: Call to Action ============ -->
+  <section class="section section--orange text-center">
+    <div class="container">
+      <h2 class="section__title section__title--white">Quero acesso antecipado</h2>
+      <a href="mailto:imaginelab@spassu.com.br" class="btn btn--primary-white mt-24">Quero acesso antecipado</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER (fundo laranja) ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <span class="footer__brand"><img src="assets/logo-imagine-labs-branco.svg" alt="Imagine Labs" height="22"></span>
+    <nav class="footer__links" aria-label="Navegação do rodapé">
+      <a href="imagine-labs.html" class="footer__link">Frameworks</a>
+      <a href="metodologia.html" class="footer__link">Metodologia</a>
+      <a href="produtos.html" class="footer__link">Produtos</a>
+      <a href="consultoria.html" class="footer__link">Consultoria</a>
+      <a href="hub.html" class="footer__link">Hub de Recursos</a>
+    </nav>
+    <span class="footer__copy">© 2026 Spassu. Uso interno.</span>
+  </div>
+</footer>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frontier | Imagine Labs — Portal Spassu</title>
+<meta name="description" content="Frontier — a plataforma que acelera o SDLC com IA aplicada. Imagine Labs, Spassu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="sp-chrome">
+
+  <!-- Topbar — logo + nome do site (simulação SharePoint) -->
+  <div class="sp-topbar">
+    <div class="sp-topbar__logo"><img src="assets/symbol-spassu-laranja.svg" alt="Spassu"></div>
+    <span class="sp-topbar__title">Imagine Labs · Portal Spassu</span>
+    <div class="sp-topbar__meta">
+      <span class="sp-topbar__meta-item">☆ Favoritar</span>
+      <span class="sp-topbar__meta-item">👥 Equipe</span>
+    </div>
+  </div>
+
+  <!-- Toolbar — ações da página (simulação modo SharePoint) -->
+  <div class="sp-toolbar">
+    <div class="sp-toolbar__actions">
+      <span>+ Novo</span>
+      <span>Detalhes da página</span>
+      <span>Visualização</span>
+      <span>Análises</span>
+    </div>
+    <div class="sp-toolbar__right">
+      <span>Compartilhar</span>
+      <span class="sp-toolbar__edit">Editar</span>
+    </div>
+  </div>
+
+  <div class="sp-body">
+    <!-- Sidenav lateral expandida — páginas do site -->
+    <nav class="sp-sidenav">
+      <a href="index.html" class="sp-sidenav__item">Studio Imagine Labs</a>
+      <details class="sp-sidenav__group">
+        <summary>Frameworks<span class="chevron">▾</span></summary>
+        <div class="sp-sidenav__submenu">
+          <a href="imagine-labs.html" class="sp-sidenav__subitem">Imagine Labs</a>
+          <a href="imagine-ia.html" class="sp-sidenav__subitem">Imagine IA</a>
+          <a href="imagine-insights.html" class="sp-sidenav__subitem">Imagine Insights</a>
+        </div>
+      </details>
+      <details class="sp-sidenav__group">
+        <summary>Metodologia<span class="chevron">▾</span></summary>
+        <div class="sp-sidenav__submenu">
+          <a href="etapa-01-product-discovery.html" class="sp-sidenav__subitem">01 · Product Discovery</a>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">02 · Fluxo AS IS</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">03 · Gaps e Soluções</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">04 · Fluxo TO BE</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">05 · Casos de Uso</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">06 · Protótipo</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">07 · Solução Imagine IA</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">08 · PRD</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">09 · TechSpec</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">10 · Plano Agentic</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">11 · Execução Frontier</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">12 · Validação</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">13 · Governança</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">14 · Implantação</span>
+        </div>
+      </details>
+      <a href="produtos.html" class="sp-sidenav__item sp-sidenav__item--active">Produtos</a>
+      <a href="consultoria.html" class="sp-sidenav__item">Consultoria</a>
+      <a href="hub.html" class="sp-sidenav__item">Hub de Recursos</a>
+    </nav>
+
+    <!-- Conteúdo da página -->
+    <div class="sp-content">
+
+<!-- ============ NAVEGAÇÃO ============ -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo"><img src="assets/symbol-spassu-laranja.svg" alt="Spassu" height="28"></a>
+    <ul class="nav__links">
+      <li><a href="index.html" class="nav__link">Studio Imagine Labs</a></li>
+      <li><a href="imagine-labs.html" class="nav__link">Frameworks</a></li>
+      <li><a href="metodologia.html" class="nav__link">Metodologia</a></li>
+      <li><a href="produtos.html" class="nav__link nav__link--active">Produtos</a></li>
+      <li><a href="consultoria.html" class="nav__link">Consultoria</a></li>
+      <li><a href="hub.html" class="nav__link">Hub de Recursos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ 1. HERO (navy) — webpart SP: Hero ============ -->
+  <section class="hero hero--navy">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__logo">Frontier</div>
+        <h1 class="hero__title">Não é o modelo de IA. É o harness ao redor dele.</h1>
+        <p class="hero__subtitle">Diferença entre plataformas: 23–45% | Modelos de IA: apenas 1–3%. — Gartner, mar/2026</p>
+      </div>
+      <div class="hero__image">
+        <svg class="img-placeholder__icon" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <rect width="48" height="48" rx="6" fill="#FFFFFF"/>
+          <path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#FFFFFF"/>
+          <circle cx="34" cy="14" r="4" fill="#FFFFFF"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. OS 4 PILARES — webpart SP: Highlighted Content ============ -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section__header">
+        <span class="fs-label fw-700 text-orange">Como o Frontier funciona</span>
+        <h2 class="section__title">Os 4 Pilares</h2>
+      </div>
+      <div class="cards-grid cards-grid--2col">
+        <div class="card card--cinza">
+          <div class="card__body">
+            <h3 class="card__title">Plataforma</h3>
+            <p class="card__text">Cobertura e governança técnica sobre os agentes.</p>
+          </div>
+        </div>
+        <div class="card card--cinza">
+          <div class="card__body">
+            <h3 class="card__title">Processo</h3>
+            <p class="card__text">Processo certo para o nível de maturidade de cada squad.</p>
+          </div>
+        </div>
+        <div class="card card--cinza">
+          <div class="card__body">
+            <h3 class="card__title">Capacitação</h3>
+            <p class="card__text">Papéis precisam mudar junto com a tecnologia.</p>
+          </div>
+        </div>
+        <div class="card card--cinza">
+          <div class="card__body">
+            <h3 class="card__title">Governança</h3>
+            <p class="card__text">Produtividade precisa ser reinvestida, não cortada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. MÉTRICAS SDLC — webpart SP: Text (3 colunas) ============ -->
+  <section class="section section--navy">
+    <div class="container">
+      <div class="section__header">
+        <span class="fs-label fw-700 text-white">Resultados</span>
+        <h2 class="section__title section__title--white">Métricas SDLC</h2>
+      </div>
+      <div class="metrics-grid">
+        <div class="metric-card metric-card--navy">
+          <div class="metric-card__value">−30/50%</div>
+          <div class="metric-card__label">Velocidade</div>
+        </div>
+        <div class="metric-card metric-card--navy">
+          <div class="metric-card__value">+30/80%</div>
+          <div class="metric-card__label">Throughput</div>
+        </div>
+        <div class="metric-card metric-card--navy">
+          <div class="metric-card__value">+50/90%</div>
+          <div class="metric-card__label">Qualidade</div>
+        </div>
+        <div class="metric-card metric-card--navy">
+          <div class="metric-card__value">+35/75%</div>
+          <div class="metric-card__label">Segurança</div>
+        </div>
+      </div>
+      <p class="text-white fs-small mt-24" style="opacity:.75;"><strong class="text-avocado">98%</strong> dos desenvolvedores nos contratos já usam IA no dia a dia.</p>
+    </div>
+  </section>
+
+  <!-- ============ 4. DEMO — webpart SP: Text + Image ============ -->
+  <section class="section section--cinza">
+    <div class="container">
+      <div class="section__header">
+        <span class="fs-label fw-700 text-orange">Veja em execução</span>
+        <h2 class="section__title">Veja o Frontier em ação</h2>
+        <p class="section__subtitle">Interface pensada para times de desenvolvimento — do backlog ao deploy com IA integrada.</p>
+      </div>
+      <div class="img-placeholder">
+        <svg class="img-placeholder__icon" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <rect width="48" height="48" rx="6" fill="#D0D0D0"/>
+          <path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/>
+          <circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+        </svg>
+        <span class="img-placeholder__caption">[Screenshot da plataforma — a inserir]</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. PIPELINE EM 7 FASES — webpart SP: Image ============ -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section__header">
+        <span class="fs-label fw-700 text-orange">Como funciona</span>
+        <h2 class="section__title">Do desafio ao produto em 7 etapas</h2>
+        <p class="section__subtitle">Um pipeline estruturado que conecta descoberta, desenvolvimento e governança em ciclos contínuos.</p>
+      </div>
+      <div class="img-placeholder">
+        <svg class="img-placeholder__icon" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <rect width="48" height="48" rx="6" fill="#D0D0D0"/>
+          <path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/>
+          <circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+        </svg>
+        <span class="img-placeholder__caption">[Diagrama do pipeline — exportar do Figma/PPT e inserir como imagem]</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. CTA FINAL — webpart SP: Call to Action ============ -->
+  <section class="section section--orange text-center">
+    <div class="container">
+      <h2 class="section__title section__title--white">Solicitar acesso</h2>
+      <a href="mailto:imaginelab@spassu.com.br" class="btn btn--primary-white mt-24">Solicitar acesso</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER (fundo laranja) ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <span class="footer__brand"><img src="assets/logo-imagine-labs-branco.svg" alt="Imagine Labs" height="22"></span>
+    <nav class="footer__links" aria-label="Navegação do rodapé">
+      <a href="imagine-labs.html" class="footer__link">Frameworks</a>
+      <a href="metodologia.html" class="footer__link">Metodologia</a>
+      <a href="produtos.html" class="footer__link">Produtos</a>
+      <a href="consultoria.html" class="footer__link">Consultoria</a>
+      <a href="hub.html" class="footer__link">Hub de Recursos</a>
+    </nav>
+    <span class="footer__copy">© 2026 Spassu. Uso interno.</span>
+  </div>
+</footer>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

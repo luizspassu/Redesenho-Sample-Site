@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consultoria | Imagine Labs — Portal Spassu</title>
+<meta name="description" content="Cases de transformação da Imagine Labs, Spassu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="sp-chrome">
+
+  <!-- Topbar — logo + nome do site (simulação SharePoint) -->
+  <div class="sp-topbar">
+    <div class="sp-topbar__logo"><img src="assets/symbol-spassu-laranja.svg" alt="Spassu"></div>
+    <span class="sp-topbar__title">Imagine Labs · Portal Spassu</span>
+    <div class="sp-topbar__meta">
+      <span class="sp-topbar__meta-item">☆ Favoritar</span>
+      <span class="sp-topbar__meta-item">👥 Equipe</span>
+    </div>
+  </div>
+
+  <!-- Toolbar — ações da página (simulação modo SharePoint) -->
+  <div class="sp-toolbar">
+    <div class="sp-toolbar__actions">
+      <span>+ Novo</span>
+      <span>Detalhes da página</span>
+      <span>Visualização</span>
+      <span>Análises</span>
+    </div>
+    <div class="sp-toolbar__right">
+      <span>Compartilhar</span>
+      <span class="sp-toolbar__edit">Editar</span>
+    </div>
+  </div>
+
+  <div class="sp-body">
+    <!-- Sidenav lateral expandida — páginas do site -->
+    <nav class="sp-sidenav">
+      <a href="index.html" class="sp-sidenav__item">Studio Imagine Labs</a>
+      <details class="sp-sidenav__group">
+        <summary>Frameworks<span class="chevron">▾</span></summary>
+        <div class="sp-sidenav__submenu">
+          <a href="imagine-labs.html" class="sp-sidenav__subitem">Imagine Labs</a>
+          <a href="imagine-ia.html" class="sp-sidenav__subitem">Imagine IA</a>
+          <a href="imagine-insights.html" class="sp-sidenav__subitem">Imagine Insights</a>
+        </div>
+      </details>
+      <details class="sp-sidenav__group">
+        <summary>Metodologia<span class="chevron">▾</span></summary>
+        <div class="sp-sidenav__submenu">
+          <a href="etapa-01-product-discovery.html" class="sp-sidenav__subitem">01 · Product Discovery</a>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">02 · Fluxo AS IS</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">03 · Gaps e Soluções</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">04 · Fluxo TO BE</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">05 · Casos de Uso</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">06 · Protótipo</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">07 · Solução Imagine IA</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">08 · PRD</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">09 · TechSpec</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">10 · Plano Agentic</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">11 · Execução Frontier</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">12 · Validação</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">13 · Governança</span>
+          <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">14 · Implantação</span>
+        </div>
+      </details>
+      <a href="produtos.html" class="sp-sidenav__item">Produtos</a>
+      <a href="consultoria.html" class="sp-sidenav__item sp-sidenav__item--active">Consultoria</a>
+      <a href="hub.html" class="sp-sidenav__item">Hub de Recursos</a>
+    </nav>
+
+    <!-- Conteúdo da página -->
+    <div class="sp-content">
+
+<!-- ============ NAVEGAÇÃO ============ -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo"><img src="assets/symbol-spassu-laranja.svg" alt="Spassu" height="28"></a>
+    <ul class="nav__links">
+      <li><a href="index.html" class="nav__link">Studio Imagine Labs</a></li>
+      <li><a href="imagine-labs.html" class="nav__link">Frameworks</a></li>
+      <li><a href="metodologia.html" class="nav__link">Metodologia</a></li>
+      <li><a href="produtos.html" class="nav__link">Produtos</a></li>
+      <li><a href="consultoria.html" class="nav__link nav__link--active">Consultoria</a></li>
+      <li><a href="hub.html" class="nav__link">Hub de Recursos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ 1. HERO — webpart SP: Hero ============ -->
+  <section class="hero hero--centered">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <h1 class="hero__title">Cases de Transformação</h1>
+        <p class="hero__subtitle">Projetos de consultoria entregues para clientes Spassu, com resultados mensuráveis.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. CASES POR STATUS — webpart SP: Highlighted Content (filtro por tag) ============ -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section__header">
+        <span class="fs-label fw-700 text-orange">Cases</span>
+        <h2 class="section__title">Por status</h2>
+      </div>
+
+      <!-- Finalizados — status confirmado pelo usuário 16/07 (5 novos + Petrobras) -->
+      <div class="status-group">
+        <span class="status-group__label">Finalizados</span>
+        <div class="cards-grid cards-grid--2col">
+          <a href="case-petrobras.html" class="card">
+            <div class="card__image">
+              <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <rect width="48" height="48" rx="6" fill="#D0D0D0"/>
+                <path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/>
+                <circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <span class="card__badge">Finalizado</span>
+              <h3 class="card__title">Petrobras — Gestão de Faturamento de Hotéis</h3>
+              <p class="card__text">Automação do processo de faturamento hoteleiro.</p>
+              <div class="case-metrics">
+                <span>20 mil notas fiscais/mês</span>
+                <span>−90% tempo de validação</span>
+                <span>−70% retrabalho</span>
+                <span>−60% ciclo de pagamento</span>
+                <span>90%+ automatizado</span>
+                <span>100% rastreabilidade</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="cards-grid mt-24">
+          <a href="case-tbg-peg.html" class="card">
+            <div class="card__image">
+              <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <rect width="48" height="48" rx="6" fill="#D0D0D0"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/><circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <span class="card__badge">Finalizado</span>
+              <h3 class="card__title">Novo PEG — TBG</h3>
+              <p class="card__text">Discovery e mapeamento de processos do novo produto de comercialização de gás da TBG.</p>
+            </div>
+          </a>
+          <a href="case-tbg-regulatoria.html" class="card">
+            <div class="card__image">
+              <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <rect width="48" height="48" rx="6" fill="#D0D0D0"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/><circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <span class="card__badge">Finalizado</span>
+              <h3 class="card__title">Gestão Regulatória — TBG</h3>
+              <p class="card__text">Mapeamento AS IS/TO BE e priorização de gaps regulatórios.</p>
+            </div>
+          </a>
+          <a href="case-arcelormittal.html" class="card">
+            <div class="card__image">
+              <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <rect width="48" height="48" rx="6" fill="#D0D0D0"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/><circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <span class="card__badge">Finalizado</span>
+              <h3 class="card__title">Utilidades — ArcelorMittal</h3>
+              <p class="card__text">Novo sistema de cadastro, monitoramento e análise de ativos de Utilidades.</p>
+            </div>
+          </a>
+          <a href="case-naturgy.html" class="card">
+            <div class="card__image">
+              <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <rect width="48" height="48" rx="6" fill="#D0D0D0"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/><circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <span class="card__badge">Finalizado</span>
+              <h3 class="card__title">Transformação Digital — Naturgy</h3>
+              <p class="card__text">Mapeamento AS IS/TO BE do macroprocesso de Gestão de Obras.</p>
+            </div>
+          </a>
+          <a href="case-governanca-digital.html" class="card">
+            <div class="card__image">
+              <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <rect width="48" height="48" rx="6" fill="#D0D0D0"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/><circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <span class="card__badge">Finalizado</span>
+              <h3 class="card__title">Sistema de Governança Digital</h3>
+              <p class="card__text">Fluxo de Valor, app Low-Code e painel de BI para governança.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Suspensos -->
+      <div class="status-group mt-48">
+        <span class="status-group__label">Suspensos</span>
+        <div class="cards-grid cards-grid--2col">
+          <a href="case-transpetro.html" class="card card--soon">
+            <div class="card__image">
+              <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <rect width="48" height="48" rx="6" fill="#D0D0D0"/>
+                <path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/>
+                <circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <span class="card__badge">Suspenso</span>
+              <h3 class="card__title">Design Thinking — Transpetro</h3>
+              <p class="card__text">Suprimentos/orçamentação de contratação de transporte, Academia Transpetro (RJ).</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Outros cases reais do portal atual — status ainda não confirmado -->
+      <div class="status-group mt-48">
+        <span class="status-group__label">Outros Cases do Portal Atual · Status a Confirmar</span>
+        <div class="cards-grid">
+          <a href="case-bndes-riscosac.html" class="card card--soon">
+            <div class="card__image">
+              <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <rect width="48" height="48" rx="6" fill="#D0D0D0"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/><circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title">RiscoSAC — BNDES</h3>
+              <p class="card__text">Solução tecnológica para apoiar o BNDES na análise de Riscos Socioambientais e Climáticos.</p>
+            </div>
+          </a>
+          <a href="case-bndes-designthinking.html" class="card card--soon">
+            <div class="card__image">
+              <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <rect width="48" height="48" rx="6" fill="#D0D0D0"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/><circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title">Design Thinking — BNDES</h3>
+              <p class="card__text">Serviço de Design Thinking para atender desafios do BNDES.</p>
+            </div>
+          </a>
+          <a href="case-cocacola.html" class="card card--soon">
+            <div class="card__image">
+              <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <rect width="48" height="48" rx="6" fill="#D0D0D0"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/><circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <span class="card__badge">Conteúdo pendente</span>
+              <h3 class="card__title">Coca-Cola</h3>
+              <p class="card__text">Página ainda não preenchida no portal atual.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 3. CTA FINAL — webpart SP: Call to Action ============ -->
+  <section class="section section--orange text-center">
+    <div class="container">
+      <h2 class="section__title section__title--white">Tem um desafio para resolver?</h2>
+      <a href="mailto:imaginelab@spassu.com.br" class="btn btn--primary-white mt-24">Falar com a Imagine Labs</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER (fundo laranja) ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <span class="footer__brand"><img src="assets/logo-imagine-labs-branco.svg" alt="Imagine Labs" height="22"></span>
+    <nav class="footer__links" aria-label="Navegação do rodapé">
+      <a href="imagine-labs.html" class="footer__link">Frameworks</a>
+      <a href="metodologia.html" class="footer__link">Metodologia</a>
+      <a href="produtos.html" class="footer__link">Produtos</a>
+      <a href="consultoria.html" class="footer__link">Consultoria</a>
+      <a href="hub.html" class="footer__link">Hub de Recursos</a>
+    </nav>
+    <span class="footer__copy">© 2026 Spassu. Uso interno.</span>
+  </div>
+</footer>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

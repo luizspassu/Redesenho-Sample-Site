@@ -1,0 +1,1002 @@
+/* ======================================================================
+   DESIGN SYSTEM — Spassu / Imagine Labs
+   Figma: nEXSYKEZpRlkPwjAdCTEJL  |  Gerado: 15/07/2026
+   FONTE DE VERDADE VISUAL — não alterar sem consultar o Figma.
+
+   <head> obrigatório em todos os HTMLs:
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/style.css">
+   ====================================================================== */
+
+
+/* -----------------------------------------------------------------------
+   1. RESET
+   ----------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html  { scroll-behavior: smooth; }
+body  {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--preto);
+  background: var(--branco);
+  -webkit-font-smoothing: antialiased;
+}
+img   { max-width: 100%; display: block; }
+a     { text-decoration: none; color: inherit; }
+ul    { list-style: none; }
+button { font-family: inherit; border: none; background: none; cursor: pointer; }
+
+
+/* -----------------------------------------------------------------------
+   2. TOKENS — paleta, escala, espaçamento
+   ----------------------------------------------------------------------- */
+:root {
+  /* ── Cores ─────────────────────────────────────────────────────── */
+  --laranja:   #FA4616;   /* brand hero, footer, CTAs               */
+  --navy:      #201547;   /* brand header, seções escuras, títulos  */
+  --avocado:   #DBE442;   /* APENAS decorativo sobre --navy          */
+  --cinza-cl:  #F7F7F7;   /* seções alternadas, card backgrounds    */
+  --cinza:     #666666;   /* texto secundário                       */
+  --branco:    #FFFFFF;
+  --preto:     #1A1A1A;
+  --border:    #E8E8E8;
+
+  /* Exceção controlada — fora das 6 cores oficiais do manual (Laranja, Navy,
+     Avocado, Spatial Grey, Branco, Preto). Usado só no chrome do SP (toolbar +
+     sidenav): preto é proibido como fundo absoluto (manual pág.16) e navy
+     colidiria com seções navy de conteúdo. Cinza escuro neutro resolve os dois
+     sem reutilizar nenhum token do palette de conteúdo. */
+  --cinza-escuro: #3A3A3A;
+
+  /* ── Tipografia ─────────────────────────────────────────────────── */
+  --fs-label:  11px;
+  --fs-small:  14px;  /* era 13px — tipografia geral pequena demais, reportado pelo usuário */
+  --fs-body:   16px;
+  --fs-h3:     22px;
+  --fs-h2:     28px;
+  --fs-h1:     32px;
+  --fs-hero:   40px;
+
+  /* ── Espaçamentos ───────────────────────────────────────────────── */
+  --sp-4:   4px;
+  --sp-8:   8px;
+  --sp-12: 12px;
+  --sp-16: 16px;
+  --sp-24: 24px;
+  --sp-32: 32px;
+  --sp-48: 48px;
+  --sp-64: 64px;
+  --sp-80: 80px;
+
+  /* ── Layout ─────────────────────────────────────────────────────── */
+  --content-w: 1200px;  /* área de conteúdo centrado   */
+  --gutter:     120px;  /* padding lateral             */
+
+  /* ── Componentes ────────────────────────────────────────────────── */
+  --radius:      12px;   /* cards, imagens — NUNCA containers */
+  --radius-pill: 100px;  /* badges, botões                   */
+  --shadow:      0 2px 16px rgba(0, 0, 0, 0.08);
+}
+
+
+/* -----------------------------------------------------------------------
+   3. TIPOGRAFIA BASE
+   ----------------------------------------------------------------------- */
+h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; color: var(--navy); }
+p               { font-size: var(--fs-body); line-height: 1.6; color: var(--cinza); }
+
+.text-center  { text-align: center; }
+.text-left    { text-align: left; }
+.text-orange  { color: var(--laranja) !important; }
+.text-navy    { color: var(--navy)    !important; }
+.text-white   { color: var(--branco)  !important; }
+.text-cinza   { color: var(--cinza)   !important; }
+.text-avocado { color: var(--avocado) !important; }
+
+.fw-400 { font-weight: 400; }
+.fw-600 { font-weight: 600; }
+.fw-700 { font-weight: 700; }
+
+.fs-label { font-size: 13px; display: inline-block; margin-bottom: var(--sp-8); }  /* eyebrow — maior que --fs-label (11px, usado em badges/tags menores) por pedido do usuário */
+.fs-small { font-size: var(--fs-small); }
+.fs-body  { font-size: var(--fs-body);  }
+.fs-h3    { font-size: var(--fs-h3);   }
+.fs-h2    { font-size: var(--fs-h2);   }
+
+
+/* -----------------------------------------------------------------------
+   4. LAYOUT — container + seção
+   ----------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--content-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section        { padding: var(--sp-64) 0; }
+.section--white  { background: var(--branco);  }
+.section--cinza  { background: var(--cinza-cl); }
+.section--navy   { background: var(--navy);    }
+.section--orange { background: var(--laranja); }
+
+.section__header { margin-bottom: var(--sp-48); }
+
+.section__title {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: var(--sp-8);
+}
+.section__title--orange  { color: var(--laranja); }
+.section__title--avocado { color: var(--avocado); }
+.section__title--white   { color: var(--branco);  }
+
+.section__subtitle { font-size: var(--fs-body); color: var(--cinza); line-height: 1.6; }
+.section__subtitle--white { color: rgba(255,255,255,.72); }
+
+
+/* -----------------------------------------------------------------------
+   5. NAVEGAÇÃO (sticky, branca)
+   ----------------------------------------------------------------------- */
+.nav {
+  background: var(--branco);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+.nav__inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  max-width: var(--content-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  height: 64px;
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  justify-self: start;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.nav__logo img { display: block; }
+.nav__logo em { color: var(--laranja); font-style: normal; }
+
+.nav__links { display: flex; gap: var(--sp-32); align-items: center; justify-self: center; }
+
+.nav__link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cinza);
+  transition: color .15s;
+  white-space: nowrap;
+}
+.nav__link:hover,
+.nav__link--active { color: var(--laranja); }
+
+
+/* -----------------------------------------------------------------------
+   6. HERO — LARANJA, dois painéis (HOME)
+   Figma HOME frame 206:372: fundo #FA4616, logo topo-esq,
+   headline branca à esq, placeholder de imagem à dir.
+   ----------------------------------------------------------------------- */
+.hero {
+  background: var(--laranja);   /* ← LARANJA — crítico */
+  padding: var(--sp-64) 0;
+}
+
+.hero__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-48);
+  max-width: var(--content-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Painel esquerdo */
+.hero__content { flex: 1; max-width: 520px; }
+
+.hero__logo {
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: var(--sp-24);
+}
+.hero__logo img { display: block; }
+
+.hero__title {
+  font-size: var(--fs-hero);
+  font-weight: 700;
+  color: var(--branco);         /* ← branco sobre laranja */
+  line-height: 1.15;
+  margin-bottom: var(--sp-16);
+}
+
+.hero__subtitle {
+  font-size: var(--fs-body);
+  color: rgba(255,255,255,.85);
+  line-height: 1.6;
+  margin-bottom: var(--sp-32);
+}
+
+/* Métricas inline */
+.hero__metrics { display: flex; gap: var(--sp-32); }
+
+.hero__metric-number {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--branco);
+  line-height: 1;
+}
+.hero__metric-label {
+  display: block;
+  font-size: 12px;
+  color: rgba(255,255,255,.75);
+  margin-top: 2px;
+}
+
+/* Painel direito — imagem */
+.hero__image {
+  flex: 0 0 440px;
+  height: 300px;
+  background: rgba(255,255,255,.15);  /* branco semitransparente */
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── VARIANTE: centrado (METODOLOGIA — hero laranja centrado) ── */
+.hero--centered { text-align: center; }
+.hero--centered .hero__inner {
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--sp-16);
+}
+.hero--centered .hero__content { max-width: 760px; }
+.hero--centered .hero__title   { font-size: var(--fs-h1); }
+
+/* ── VARIANTE: navy (FRONTIER) ── */
+.hero--navy { background: var(--navy); }
+
+
+/* -----------------------------------------------------------------------
+   7. QUICK LINKS — "Acesso Rápido"
+   Figma HOME S2: cinza-cl bg, círculo avocado, label navy
+   SP webpart: Quick Links
+   ----------------------------------------------------------------------- */
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--sp-16);
+}
+.quick-links--5col { grid-template-columns: repeat(5, 1fr); }
+.quick-links--4col { grid-template-columns: repeat(4, 1fr); }
+
+.ql-card {
+  background: var(--cinza-cl);
+  border-radius: var(--radius);
+  padding: var(--sp-16);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-8);
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+}
+.ql-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+/* Ícone: círculo avocado (conforme Figma) */
+.ql-card__icon {
+  width: 28px;
+  height: 28px;
+  background: var(--avocado);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ql-card__label { font-size: var(--fs-body); font-weight: 700; color: var(--navy); line-height: 1.3; }
+.ql-card__desc  { font-size: var(--fs-small); color: var(--cinza); line-height: 1.5; }
+
+
+/* -----------------------------------------------------------------------
+   8. CARDS DE CONTEÚDO (SP: Highlighted Content)
+   ----------------------------------------------------------------------- */
+.cards-grid {
+  display: grid;
+  gap: var(--sp-24);
+  grid-template-columns: repeat(3, 1fr);
+}
+.cards-grid--2col { grid-template-columns: repeat(2, 1fr); }
+.cards-grid--4col { grid-template-columns: repeat(4, 1fr); }
+
+/* Card base */
+.card {
+  background: var(--branco);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+.card--cinza { background: var(--cinza-cl); box-shadow: none; }  /* Studio INSIGHTS */
+.card--navy  { background: var(--navy);     box-shadow: none; }  /* Studio IA */
+
+/* Área de imagem */
+.card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--cinza-cl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Corpo */
+.card__body {
+  padding: var(--sp-24);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+.card__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px var(--sp-12);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: var(--laranja);
+  color: var(--branco);
+  width: fit-content;
+  margin-bottom: var(--sp-8);
+}
+
+.card__title    { font-size: var(--fs-h3); font-weight: 700; color: var(--navy);  line-height: 1.2; }
+.card__subtitle { font-size: var(--fs-small); color: var(--cinza); }
+.card__label    { font-size: var(--fs-small); font-weight: 700; color: var(--navy); margin-top: var(--sp-8); }
+.card__text     { font-size: var(--fs-small); color: var(--cinza); line-height: 1.6; }
+.card__methods  { font-size: 12px; color: var(--cinza); line-height: 1.7; }
+
+.card__link {
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--laranja);
+  margin-top: auto;
+  padding-top: var(--sp-16);
+}
+
+/* Tokens card--navy */
+.card--navy .card__title    { color: var(--branco); }
+.card--navy .card__subtitle { color: rgba(255,255,255,.65); }
+.card--navy .card__label    { color: rgba(255,255,255,.85); }
+.card--navy .card__text     { color: rgba(255,255,255,.60); }
+.card--navy .card__methods  { color: rgba(255,255,255,.60); }
+
+/* Card horizontal (featured case) */
+.card--horizontal { flex-direction: row; align-items: center; }
+.card--horizontal .card__image { width: 160px; height: 120px; aspect-ratio: unset; flex-shrink: 0; }
+
+/* "Em breve" */
+.card--soon .card__badge {
+  background: var(--cinza-cl);
+  color: var(--cinza);
+  border: 1px solid #DCDCDC;
+}
+
+
+/* -----------------------------------------------------------------------
+   9. SEÇÃO FRONTIER (navy, dois painéis)
+   Figma HOME S4: imagem esq, conteúdo dir, fundo navy
+   ----------------------------------------------------------------------- */
+.frontier-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-48);
+  align-items: start;
+}
+
+.frontier-image {
+  background: rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frontier-tag {
+  font-size: var(--fs-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--branco);   /* nunca laranja sobre navy — ver Manual Identidade Visual, Combinações */
+  margin-bottom: var(--sp-12);
+}
+
+.frontier-headline {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--branco);
+  line-height: 1.2;
+  margin-bottom: var(--sp-8);
+}
+
+.frontier-quote {
+  font-size: var(--fs-small);
+  color: rgba(255,255,255,.45);
+  font-style: italic;
+  margin-bottom: var(--sp-24);
+}
+
+.frontier-pillar        { margin-bottom: var(--sp-16); }
+.frontier-pillar__name  { font-size: var(--fs-small); font-weight: 700; color: var(--branco); margin-bottom: 3px; }  /* nunca laranja sobre navy */
+.frontier-pillar__desc  { font-size: var(--fs-small); color: rgba(255,255,255,.55); line-height: 1.5; }
+
+
+/* -----------------------------------------------------------------------
+   10. MÉTRICAS / STATS
+   ----------------------------------------------------------------------- */
+.metrics-grid {
+  display: grid;
+  gap: var(--sp-24);
+  grid-template-columns: repeat(4, 1fr);
+}
+.metrics-grid--3col { grid-template-columns: repeat(3, 1fr); }
+.metrics-grid--2col { grid-template-columns: repeat(2, 1fr); }
+
+.metric-card {
+  background: var(--cinza-cl);
+  border-radius: var(--radius);
+  padding: var(--sp-32) var(--sp-24);
+  text-align: center;
+}
+.metric-card--navy { background: var(--navy); }
+
+.metric-card__value { font-size: 36px; font-weight: 700; color: var(--laranja); line-height: 1; margin-bottom: var(--sp-8); }
+.metric-card--navy .metric-card__value { color: var(--avocado); }
+
+.metric-card__range { font-size: var(--fs-small); color: var(--cinza); margin-bottom: 3px; }
+.metric-card--navy .metric-card__range { color: rgba(255,255,255,.5); }
+
+.metric-card__label { font-size: var(--fs-small); font-weight: 700; color: var(--navy); }
+.metric-card--navy .metric-card__label { color: rgba(255,255,255,.75); }
+
+/* Chips de métrica dentro de card de case (Consultoria) */
+.case-metrics { display: flex; flex-wrap: wrap; gap: var(--sp-8); margin-top: var(--sp-12); }
+.case-metrics span {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--cinza-cl);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* Grupo de status (Consultoria) */
+.status-group__label {
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--cinza);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: var(--sp-16);
+}
+
+/* Listas de texto — Escalabilidade / Lições Aprendidas (páginas de case) */
+.text-list { margin-top: var(--sp-16); display: flex; flex-direction: column; gap: var(--sp-8); }
+.text-list li { font-size: var(--fs-small); color: var(--cinza); line-height: 1.5; padding-left: var(--sp-16); position: relative; }
+.text-list li::before { content: "—"; position: absolute; left: 0; color: var(--laranja); }
+.text-list--numbered { counter-reset: item; }
+.text-list--numbered li::before { content: counter(item) "."; counter-increment: item; color: var(--laranja); font-weight: 700; }
+
+/* Breadcrumb — topo do hero em páginas internas de case */
+.breadcrumb {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,.75);
+  margin-bottom: var(--sp-16);
+}
+.breadcrumb a { color: var(--branco); }
+.breadcrumb a:hover { text-decoration: underline; }
+
+/* Lista de documentos (Hub de Recursos) — simula webpart List/Document Library */
+.doc-list { background: var(--branco); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+.doc-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-16);
+  padding: var(--sp-16);
+  border-bottom: 1px solid var(--border);
+}
+.doc-row:last-child { border-bottom: none; }
+.doc-row__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--cinza-cl);
+  flex-shrink: 0;
+}
+.doc-row__name { flex: 1; font-size: var(--fs-small); font-weight: 600; color: var(--navy); }
+.doc-row__meta { font-size: 12px; color: var(--cinza); }
+
+
+/* -----------------------------------------------------------------------
+   11. ETAPAS — preview HOME (10 círculos)
+   ----------------------------------------------------------------------- */
+.steps-row { display: flex; align-items: flex-start; gap: var(--sp-12); }
+
+.step { display: flex; flex-direction: column; align-items: center; gap: var(--sp-8); flex: 1; }
+
+.step__circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--cinza-cl);
+  border: 2px solid #DCDCDC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--cinza);
+}
+
+.step__label { font-size: 11px; color: var(--cinza); text-align: center; line-height: 1.3; }
+
+/* Loop de etapas sobre fundo navy (ex.: Framework Imagine Labs) — ponto + label, sem numeração */
+.loop-row  { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-24); }
+.loop-item { display: flex; align-items: center; gap: var(--sp-8); }
+.loop-dot  { width: 8px; height: 8px; border-radius: 50%; background: var(--avocado); flex-shrink: 0; }
+.loop-item span { font-size: var(--fs-small); color: rgba(255,255,255,.85); }
+
+
+/* -----------------------------------------------------------------------
+   12. AS 14 ETAPAS EM DETALHE (METODOLOGIA S4)
+   Figma 236:12: dois blocos — INSIGHTS (laranja) + CODE (navy)
+   ----------------------------------------------------------------------- */
+.etapas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-24);
+  align-items: start;
+}
+
+.etapas-bloco         { display: flex; flex-direction: column; gap: var(--sp-8); }
+
+.etapas-bloco__header {
+  padding: var(--sp-12) var(--sp-16);
+  border-radius: var(--radius);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: var(--sp-4);
+}
+.etapas-bloco__header--insights { background: var(--laranja); }
+.etapas-bloco__header--code     { background: var(--navy);    }
+
+/* Linha de etapa */
+.etapa {
+  display: flex;
+  gap: var(--sp-12);
+  align-items: flex-start;
+  padding: var(--sp-16);
+  background: var(--branco);
+  border-radius: var(--radius);
+}
+
+.etapa__num  { font-size: var(--fs-body); font-weight: 700; color: var(--laranja); min-width: 32px; flex-shrink: 0; padding-top: 1px; }
+.etapa__name { font-size: var(--fs-body); font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.etapa__desc { font-size: 14px; color: var(--cinza); line-height: 1.6; }
+
+
+/* -----------------------------------------------------------------------
+   13. IMAGE PLACEHOLDER (SP: Image webpart)
+   Padrão global: fundo branco + ícone montanha cinza + caption
+   ----------------------------------------------------------------------- */
+.img-placeholder {
+  width: 100%;
+  background: var(--branco);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-16);
+}
+.img-placeholder--alpha {
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.15);
+}
+
+.img-placeholder__icon    { opacity: .22; }
+.img-placeholder__caption { font-size: var(--fs-small); color: var(--cinza); text-align: center; max-width: 380px; line-height: 1.6; }
+
+/*
+  SVG ícone padrão (copiar inline):
+  <svg class="img-placeholder__icon" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+    <rect width="48" height="48" rx="6" fill="#D0D0D0"/>
+    <path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/>
+    <circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+  </svg>
+*/
+
+
+/* -----------------------------------------------------------------------
+   14. BOTÕES
+   ----------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-8);
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  padding: 12px var(--sp-24);
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  transition: opacity .15s, transform .1s;
+  white-space: nowrap;
+}
+.btn:hover { opacity: .88; transform: translateY(-1px); }
+
+.btn--primary        { background: var(--laranja);  color: var(--branco);  }
+.btn--primary-white  { background: var(--branco);   color: var(--laranja); }
+.btn--outline        { background: transparent; color: var(--branco);  border: 2px solid var(--branco); }
+.btn--outline-orange { background: transparent; color: var(--laranja); border: 2px solid var(--laranja); }
+
+
+/* -----------------------------------------------------------------------
+   15. BADGES
+   ----------------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px var(--sp-12);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: fit-content;
+}
+.badge--orange  { background: var(--laranja);   color: var(--branco); }
+.badge--navy    { background: var(--navy);      color: var(--branco); }
+.badge--white   { background: var(--branco);    color: var(--navy);   }  /* p/ uso sobre navy — nunca laranja sobre navy */
+.badge--avocado { background: var(--avocado);   color: var(--navy);   }
+.badge--soon    { background: var(--cinza-cl);  color: var(--cinza);  border: 1px solid #DCDCDC; }
+
+
+/* -----------------------------------------------------------------------
+   16. PRÊMIOS ISG (SP: Image + Text)
+   ----------------------------------------------------------------------- */
+.awards-layout {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-48);
+}
+
+.awards-image {
+  flex: 0 0 300px;
+  height: 160px;
+  background: var(--cinza-cl);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.awards-content h3 { font-size: var(--fs-h3); margin-bottom: var(--sp-16); }
+
+.award-item {
+  padding: var(--sp-8) 0 var(--sp-8) var(--sp-16);
+  border-left: 3px solid var(--laranja);
+  margin-bottom: var(--sp-12);
+  font-size: var(--fs-small);
+  color: var(--cinza);
+  line-height: 1.5;
+}
+.award-item strong { display: block; color: var(--navy); font-weight: 700; }
+
+
+/* -----------------------------------------------------------------------
+   17. FOOTER (fundo LARANJA — conforme Figma)
+   ----------------------------------------------------------------------- */
+.footer {
+  background: var(--laranja);   /* ← LARANJA — crítico */
+  padding: var(--sp-48) 0;
+}
+
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--content-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.footer__brand  { display: flex; align-items: center; font-size: 18px; font-weight: 700; color: var(--branco); }
+.footer__brand img { display: block; }
+.footer__copy   { font-size: 12px; color: rgba(255,255,255,.65); }
+.footer__links  { display: flex; gap: var(--sp-24); }
+.footer__link   { font-size: var(--fs-small); font-weight: 600; color: rgba(255,255,255,.85); }
+.footer__link:hover { color: var(--branco); }
+
+
+/* -----------------------------------------------------------------------
+   18. UTILITÁRIOS DE ESPAÇAMENTO
+   ----------------------------------------------------------------------- */
+.mt-8  { margin-top: var(--sp-8);  } .mt-16 { margin-top: var(--sp-16); }
+.mt-24 { margin-top: var(--sp-24); } .mt-32 { margin-top: var(--sp-32); }
+.mt-48 { margin-top: var(--sp-48); }
+
+.mb-8  { margin-bottom: var(--sp-8);  } .mb-16 { margin-bottom: var(--sp-16); }
+.mb-24 { margin-bottom: var(--sp-24); } .mb-32 { margin-bottom: var(--sp-32); }
+.mb-48 { margin-bottom: var(--sp-48); }
+
+
+/* -----------------------------------------------------------------------
+   19. DIVISOR
+   ----------------------------------------------------------------------- */
+.divider { border: none; border-top: 1px solid var(--border); margin: var(--sp-48) 0; }
+
+
+/* -----------------------------------------------------------------------
+   20. CHROME DO SHAREPOINT (simulação para o protótipo)
+   Referência: captura de tela do SharePoint real do projeto (15/07/2026) —
+   topbar preta + toolbar de ações + sidenav lateral expandida com as
+   páginas do site. Diagramação replica o SP real; paleta usa as cores
+   do protótipo (navy/laranja) em vez do preto/cinza padrão do SP.
+   Estrutura:
+     .sp-chrome
+       .sp-topbar     ← barra superior (logo + nome do site)
+       .sp-toolbar    ← barra de ações da página (modo edição SP)
+       .sp-body
+         .sp-sidenav  ← nav lateral expandida (páginas do site)
+         .sp-content  ← área de conteúdo da página
+   ----------------------------------------------------------------------- */
+
+/* Wrapper global — substitui <body> direto */
+.sp-chrome {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---- Topbar: barra M365 — laranja, replica a marca do tenant Spassu ---- */
+.sp-topbar {
+  height: 48px;
+  background: var(--laranja);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-12);
+  padding: 0 var(--sp-16);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 300;
+}
+
+.sp-topbar__logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--branco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sp-topbar__logo img { display: block; height: 20px; width: auto; }  /* +25% (era 16px), pedido do usuário */
+
+.sp-topbar__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--branco);
+  opacity: 0.92;
+  white-space: nowrap;
+}
+
+.sp-topbar__meta {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-24);
+}
+
+.sp-topbar__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  white-space: nowrap;
+}
+
+/* ---- Toolbar: ações da página (estilo modo edição SP) — cinza escuro ---- */
+.sp-toolbar {
+  height: 40px;
+  background: var(--cinza-escuro);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sp-16);
+  gap: var(--sp-24);
+  border-top: 1px solid rgba(255,255,255,.08);
+  flex-shrink: 0;
+}
+
+.sp-toolbar__actions,
+.sp-toolbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-16);
+}
+.sp-toolbar__right { margin-left: auto; }
+
+.sp-toolbar__actions span,
+.sp-toolbar__right span {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,.75);
+  white-space: nowrap;
+}
+
+.sp-toolbar__edit {
+  background: var(--laranja);
+  color: var(--branco) !important;
+  padding: 4px var(--sp-12);
+  border-radius: 4px;
+}
+
+/* Área central: sidenav + conteúdo */
+.sp-body {
+  display: flex;
+  flex: 1;
+}
+
+/* Sidenav lateral expandida — páginas do site — cinza escuro */
+.sp-sidenav {
+  width: 232px;
+  background: var(--cinza-escuro);
+  flex-shrink: 0;
+  padding: var(--sp-16) 0;
+  position: sticky;
+  top: 88px;                    /* abaixo de topbar (48px) + toolbar (40px) */
+  height: calc(100vh - 88px);
+  overflow-y: auto;
+}
+
+.sp-sidenav__site {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--sp-8) var(--sp-16);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: var(--sp-8);
+}
+.sp-sidenav__site .chevron { opacity: .5; font-size: 10px; }
+
+.sp-sidenav__item {
+  display: flex;
+  align-items: center;
+  padding: var(--sp-8) var(--sp-16);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,.72);
+  border-left: 3px solid transparent;
+  transition: background .1s;
+}
+.sp-sidenav__item:hover { background: rgba(255,255,255,.05); }
+.sp-sidenav__item--active {
+  color: var(--branco);
+  background: rgba(255,255,255,.08);
+  border-left-color: var(--laranja);
+}
+
+/* Grupo expansível (ex.: Metodologia > 14 etapas) — <details>/<summary>, sem JS */
+.sp-sidenav__group summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-8) var(--sp-16);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,.72);
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  list-style: none;
+}
+.sp-sidenav__group summary::-webkit-details-marker { display: none; }
+.sp-sidenav__group summary:hover { background: rgba(255,255,255,.05); }
+.sp-sidenav__group[open] summary,
+.sp-sidenav__group summary.sp-sidenav__item--active {
+  color: var(--branco);
+  background: rgba(255,255,255,.08);
+  border-left-color: var(--laranja);
+}
+.sp-sidenav__group summary .chevron { font-size: 13px; transition: transform .15s; opacity: .9; color: var(--branco); }
+.sp-sidenav__group[open] summary .chevron { transform: rotate(180deg); }
+
+.sp-sidenav__submenu { padding: var(--sp-4) 0; }
+.sp-sidenav__subitem {
+  display: block;
+  padding: 6px var(--sp-16) 6px calc(var(--sp-16) + 14px);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,.55);
+  border-left: 3px solid transparent;
+}
+.sp-sidenav__subitem:hover { background: rgba(255,255,255,.05); }
+.sp-sidenav__subitem--active {
+  color: var(--branco);
+  background: rgba(255,255,255,.08);
+  border-left-color: var(--laranja);
+}
+.sp-sidenav__subitem--soon {
+  color: rgba(255,255,255,.3);
+  cursor: default;
+}
+
+/* Área de conteúdo — aqui vai o <nav> + <main> + <footer> do site */
+.sp-content {
+  flex: 1;
+  min-width: 0;
+  overflow-x: hidden;
+  background: var(--branco);
+}
+
+
+/* -----------------------------------------------------------------------
+   21. RESPONSIVO
+   ----------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  :root { --gutter: 48px; }
+}
+
+@media (max-width: 900px) {
+  :root { --gutter: 24px; }
+  .hero__inner        { flex-direction: column; }
+  .hero__image        { flex: none; width: 100%; height: 220px; }
+  .hero__content      { max-width: 100%; }
+  .frontier-layout    { grid-template-columns: 1fr; }
+  .cards-grid         { grid-template-columns: repeat(2, 1fr); }
+  .quick-links        { grid-template-columns: repeat(3, 1fr); }
+  .etapas-grid        { grid-template-columns: 1fr; }
+  .metrics-grid       { grid-template-columns: repeat(2, 1fr); }
+  .awards-layout      { flex-direction: column; }
+  .footer__inner      { flex-direction: column; gap: var(--sp-16); text-align: center; }
+  .sp-sidenav         { display: none; }  /* nav do site já disponível via .nav no topo do conteúdo */
+  .sp-topbar__meta    { display: none; }
+}
+
+@media (max-width: 600px) {
+  :root { --fs-hero: 28px; --fs-h2: 22px; --fs-h3: 18px; }
+  .cards-grid   { grid-template-columns: 1fr; }
+  .quick-links  { grid-template-columns: repeat(2, 1fr); }
+  .metrics-grid { grid-template-columns: 1fr 1fr; }
+  .nav__links   { display: none; }
+}
