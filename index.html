@@ -61,8 +61,8 @@
           <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">14 · Implantação</span>
         </div>
       </details>
-      <a href="produtos.html" class="sp-sidenav__item">Produtos</a>
       <a href="consultoria.html" class="sp-sidenav__item">Consultoria</a>
+      <a href="produtos.html" class="sp-sidenav__item">Produtos</a>
       <a href="hub.html" class="sp-sidenav__item">Hub de Recursos</a>
     </nav>
 
@@ -77,8 +77,8 @@
       <li><a href="index.html" class="nav__link nav__link--active">Studio Imagine Labs</a></li>
       <li><a href="imagine-labs.html" class="nav__link">Framework</a></li>
       <li><a href="metodologia.html" class="nav__link">Metodologia</a></li>
-      <li><a href="produtos.html" class="nav__link">Produtos</a></li>
       <li><a href="consultoria.html" class="nav__link">Consultoria</a></li>
+      <li><a href="produtos.html" class="nav__link">Produtos</a></li>
       <li><a href="hub.html" class="nav__link">Hub de Recursos</a></li>
     </ul>
   </div>
@@ -118,44 +118,7 @@
     </div>
   </section>
 
-  <!-- ============ 2. QUICK LINKS — webpart SP: Quick Links ============ -->
-  <section class="section section--cinza">
-    <div class="container">
-      <div class="section__header">
-        <span class="fs-label fw-700 text-orange">Navegue pelo portal</span>
-        <h2 class="section__title">Tudo sobre inovação, em um só lugar</h2>
-      </div>
-      <div class="quick-links quick-links--4col">
-
-        <a href="metodologia.html" class="ql-card">
-          <div class="ql-card__icon"></div>
-          <span class="ql-card__label">Metodologia</span>
-          <span class="ql-card__desc">Metodologia — do design thinking à IA aplicada.</span>
-        </a>
-
-        <a href="produtos.html" class="ql-card">
-          <div class="ql-card__icon"></div>
-          <span class="ql-card__label">Produtos</span>
-          <span class="ql-card__desc">IA, processos e ferramentas de inovação da Spassu.</span>
-        </a>
-
-        <a href="consultoria.html" class="ql-card">
-          <div class="ql-card__icon"></div>
-          <span class="ql-card__label">Consultoria</span>
-          <span class="ql-card__desc">Cases reais de transformação para a Spassu.</span>
-        </a>
-
-        <a href="hub.html" class="ql-card">
-          <div class="ql-card__icon"></div>
-          <span class="ql-card__label">Hub de Recursos</span>
-          <span class="ql-card__desc">Documentos, dados e ferramentas em um só lugar.</span>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 3. AMBIDESTRIA DIGITAL 360° — webpart SP: Highlighted Content ============ -->
+  <!-- ============ 2. AMBIDESTRIA DIGITAL 360° — webpart SP: Highlighted Content ============ -->
   <section class="section section--white">
     <div class="container">
       <div class="section__header">
@@ -163,27 +126,53 @@
         <h2 class="section__title">Ambidestria Digital 360°</h2>
         <p class="section__subtitle">Duas frentes complementares que sustentam a transformação contínua da Spassu.</p>
       </div>
-      <div class="cards-grid cards-grid--2col">
-        <div class="card card--cinza">
-          <div class="card__body">
-            <span class="card__label">Frente 1</span>
-            <h3 class="card__title">Lean Digital</h3>
-            <p class="card__text">Eficiência operacional e otimização contínua dos processos digitais da companhia — a base que sustenta a operação do dia a dia.</p>
-          </div>
+      <!-- Layout distinto (colunas de texto, sem card box) para não repetir a seção Produtos/Consultoria abaixo -->
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:var(--sp-48);">
+        <div>
+          <span class="fs-label fw-700 text-orange">Frente 1</span>
+          <h3 class="card__title mt-8">Lean Digital</h3>
+          <p class="card__text">Eficiência operacional e otimização contínua dos processos digitais da companhia — a base que sustenta a operação do dia a dia.</p>
         </div>
-        <div class="card card--navy">
-          <div class="card__body">
-            <span class="card__label">Frente 2</span>
-            <h3 class="card__title">Imagine Labs</h3>
-            <p class="card__text">Laboratório de inovação que explora novas tecnologias e modelos de negócio, com dois studios: Imagine Insights e Imagine IA.</p>
-          </div>
+        <div style="border-left:3px solid var(--laranja); padding-left:var(--sp-24);">
+          <span class="fs-label fw-700 text-orange">Frente 2</span>
+          <h3 class="card__title mt-8">Imagine Labs</h3>
+          <p class="card__text">Laboratório de inovação IA First que aplica o Framework Imagine Labs através de dois studios sinérgicos: Insights (clareza estratégica) e Code (IA aplicada).</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 3.5 PRODUTOS & CONSULTORIA — webpart SP: Highlighted Content ============ -->
+  <!-- ============ 3.2 METODOLOGIA · 14 ETAPAS (movida para cá — logo após o posicionamento) — webpart SP: Image ============ -->
   <section class="section section--cinza">
+    <div class="container">
+      <div class="section__header">
+        <span class="fs-label fw-700 text-orange">Como trabalhamos</span>
+        <h2 class="section__title">Metodologia · 14 Etapas</h2>
+      </div>
+      <div class="steps-row">
+        <div class="step"><div class="step__circle">01</div><span class="step__label">Product Discovery</span></div>
+        <div class="step"><div class="step__circle">02</div><span class="step__label">Fluxo AS IS</span></div>
+        <div class="step"><div class="step__circle">03</div><span class="step__label">Gaps e Soluções</span></div>
+        <div class="step"><div class="step__circle">04</div><span class="step__label">Fluxo TO BE</span></div>
+        <div class="step"><div class="step__circle">05</div><span class="step__label">Casos de Uso</span></div>
+        <div class="step"><div class="step__circle">06</div><span class="step__label">Protótipo</span></div>
+        <div class="step"><div class="step__circle">07</div><span class="step__label">Solução Imagine IA</span></div>
+        <div class="step"><div class="step__circle">08</div><span class="step__label">PRD</span></div>
+        <div class="step"><div class="step__circle">09</div><span class="step__label">TechSpec</span></div>
+        <div class="step"><div class="step__circle">10</div><span class="step__label">Plano Agentic</span></div>
+        <div class="step"><div class="step__circle">11</div><span class="step__label">Execução Frontier</span></div>
+        <div class="step"><div class="step__circle">12</div><span class="step__label">Validação</span></div>
+        <div class="step"><div class="step__circle">13</div><span class="step__label">Governança</span></div>
+        <div class="step"><div class="step__circle">14</div><span class="step__label">Implantação</span></div>
+      </div>
+      <div class="mt-32">
+        <a href="metodologia.html" class="btn btn--outline-orange">Conhecer a metodologia completa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3.5 PRODUTOS & CONSULTORIA — webpart SP: Highlighted Content ============ -->
+  <section class="section section--white">
     <div class="container">
       <div class="section__header">
         <span class="fs-label fw-700 text-orange">O que fazemos</span>
@@ -383,35 +372,6 @@
     </div>
   </section>
 
-  <!-- ============ 7. METODOLOGIA: 14 ETAPAS — webpart SP: Image ============ -->
-  <section class="section section--cinza">
-    <div class="container">
-      <div class="section__header">
-        <span class="fs-label fw-700 text-orange">Como trabalhamos</span>
-        <h2 class="section__title">Metodologia · 14 Etapas</h2>
-      </div>
-      <div class="steps-row">
-        <div class="step"><div class="step__circle">01</div><span class="step__label">Product Discovery</span></div>
-        <div class="step"><div class="step__circle">02</div><span class="step__label">Fluxo AS IS</span></div>
-        <div class="step"><div class="step__circle">03</div><span class="step__label">Gaps e Soluções</span></div>
-        <div class="step"><div class="step__circle">04</div><span class="step__label">Fluxo TO BE</span></div>
-        <div class="step"><div class="step__circle">05</div><span class="step__label">Casos de Uso</span></div>
-        <div class="step"><div class="step__circle">06</div><span class="step__label">Protótipo</span></div>
-        <div class="step"><div class="step__circle">07</div><span class="step__label">Solução Imagine IA</span></div>
-        <div class="step"><div class="step__circle">08</div><span class="step__label">PRD</span></div>
-        <div class="step"><div class="step__circle">09</div><span class="step__label">TechSpec</span></div>
-        <div class="step"><div class="step__circle">10</div><span class="step__label">Plano Agentic</span></div>
-        <div class="step"><div class="step__circle">11</div><span class="step__label">Execução Frontier</span></div>
-        <div class="step"><div class="step__circle">12</div><span class="step__label">Validação</span></div>
-        <div class="step"><div class="step__circle">13</div><span class="step__label">Governança</span></div>
-        <div class="step"><div class="step__circle">14</div><span class="step__label">Implantação</span></div>
-      </div>
-      <div class="mt-32">
-        <a href="metodologia.html" class="btn btn--outline-orange">Conhecer a metodologia completa</a>
-      </div>
-    </div>
-  </section>
-
 </main>
 
 <!-- ============ FOOTER (fundo laranja) ============ -->
@@ -421,8 +381,8 @@
     <nav class="footer__links" aria-label="Navegação do rodapé">
       <a href="imagine-labs.html" class="footer__link">Framework</a>
       <a href="metodologia.html" class="footer__link">Metodologia</a>
-      <a href="produtos.html" class="footer__link">Produtos</a>
       <a href="consultoria.html" class="footer__link">Consultoria</a>
+      <a href="produtos.html" class="footer__link">Produtos</a>
       <a href="hub.html" class="footer__link">Hub de Recursos</a>
     </nav>
     <span class="footer__copy">© 2026 Spassu. Uso interno.</span>

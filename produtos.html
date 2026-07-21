@@ -61,8 +61,8 @@
           <span class="sp-sidenav__subitem sp-sidenav__subitem--soon">14 · Implantação</span>
         </div>
       </details>
-      <a href="produtos.html" class="sp-sidenav__item sp-sidenav__item--active">Produtos</a>
       <a href="consultoria.html" class="sp-sidenav__item">Consultoria</a>
+      <a href="produtos.html" class="sp-sidenav__item sp-sidenav__item--active">Produtos</a>
       <a href="hub.html" class="sp-sidenav__item">Hub de Recursos</a>
     </nav>
 
@@ -77,8 +77,8 @@
       <li><a href="index.html" class="nav__link">Studio Imagine Labs</a></li>
       <li><a href="imagine-labs.html" class="nav__link">Framework</a></li>
       <li><a href="metodologia.html" class="nav__link">Metodologia</a></li>
-      <li><a href="produtos.html" class="nav__link nav__link--active">Produtos</a></li>
       <li><a href="consultoria.html" class="nav__link">Consultoria</a></li>
+      <li><a href="produtos.html" class="nav__link nav__link--active">Produtos</a></li>
       <li><a href="hub.html" class="nav__link">Hub de Recursos</a></li>
     </ul>
   </div>
@@ -86,121 +86,109 @@
 
 <main>
 
-  <!-- ============ 1. HERO — webpart SP: Hero ============ -->
-  <section class="hero hero--centered">
-    <div class="hero__inner">
-      <div class="hero__content">
-        <h1 class="hero__title">Produtos</h1>
-        <p class="hero__subtitle">Produtos de transformação digital, desenvolvidos para resolver desafios específicos.</p>
+  <!-- ============ 1. HERO EM FAIXA LARANJA — webpart SP: Hero (cor sólida) ============ -->
+  <section class="section section--orange">
+    <div class="container">
+      <h1 class="section__title section__title--white">Produtos</h1>
+      <p class="section__subtitle text-white" style="opacity:.9; max-width:640px;">Produtos de transformação digital, desenvolvidos para resolver desafios específicos.</p>
+    </div>
+  </section>
+
+  <!-- ============ 2. PRODUTO EM DESTAQUE (seção navy, "vanguarda do momento") — atualizável — webpart SP: Highlighted Content ============ -->
+  <section class="section section--navy">
+    <div class="container">
+      <div style="display:grid; grid-template-columns:200px 1fr; gap:var(--sp-32); align-items:center;">
+        <div style="text-align:center;">
+          <svg class="img-placeholder__icon" width="72" height="72" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <rect width="48" height="48" rx="6" fill="#FFFFFF"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#FFFFFF"/><circle cx="34" cy="14" r="4" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div>
+          <span class="fs-label fw-700 text-avocado">Produto em destaque</span>
+          <h2 class="section__title section__title--white mt-8">Spassu Code</h2>
+          <p class="section__subtitle section__subtitle--white" style="opacity:.9;">Plataforma · Agentes de IA · Frontier + Orquestra. Do requisito ao deploy — a vanguarda da Imagine Labs no momento.</p>
+          <a href="produto-spassu-code.html" class="btn btn--outline mt-16">Ver o Spassu Code</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 2. SOLUÇÕES DE INTELIGÊNCIA ARTIFICIAL — webpart SP: Highlighted Content ============ -->
-  <section id="ia" class="section section--white">
+  <!-- ============ 3. LISTA DE PRODUTOS — grid único image-forward — webpart SP: Highlighted Content ============ -->
+  <section class="section section--cinza">
     <div class="container">
       <div class="section__header">
-        <span class="fs-label fw-700 text-orange">Categoria</span>
-        <h2 class="section__title">Soluções de Inteligência Artificial</h2>
+        <h2 class="section__title">Lista de produtos</h2>
       </div>
       <div class="cards-grid">
 
-        <!-- Spassu Code — plataforma, em destaque -->
         <a href="produto-spassu-code.html" class="card">
           <div class="card__image">
             <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-              <rect width="48" height="48" rx="6" fill="#D0D0D0"/>
-              <path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/>
-              <circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              <rect width="48" height="48" rx="6" fill="#D0D0D0"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/><circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
             </svg>
           </div>
           <div class="card__body">
             <span class="card__badge">Plataforma</span>
             <h3 class="card__title">Spassu Code</h3>
-            <p class="card__text">Do requisito ao deploy — a plataforma com agentes de IA que reúne os módulos Frontier e Orquestra.</p>
+            <p class="card__text">Do requisito ao deploy — plataforma de agentes de IA que reúne Frontier e Orquestra.</p>
           </div>
         </a>
 
-        <!-- Frontier ✅ produção — módulo de Desenvolvimento -->
         <a href="frontier.html" class="card">
           <div class="card__image">
             <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-              <rect width="48" height="48" rx="6" fill="#D0D0D0"/>
-              <path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/>
-              <circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              <rect width="48" height="48" rx="6" fill="#D0D0D0"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/><circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
             </svg>
           </div>
           <div class="card__body">
-            <span class="card__badge">Módulo · Desenvolvimento</span>
+            <span class="card__badge">Desenvolvimento</span>
             <h3 class="card__title">Frontier</h3>
-            <p class="card__text">A plataforma que acelera nosso SDLC com IA aplicada.</p>
+            <p class="card__text">Módulo que acelera o SDLC com agentes de IA aplicada ao desenvolvimento.</p>
           </div>
         </a>
 
-        <!-- Orquestra 🚧 Em breve — módulo de Consultoria -->
         <a href="orquestra.html" class="card card--soon">
           <div class="card__image">
             <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-              <rect width="48" height="48" rx="6" fill="#D0D0D0"/>
-              <path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/>
-              <circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              <rect width="48" height="48" rx="6" fill="#D0D0D0"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/><circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
             </svg>
           </div>
           <div class="card__body">
-            <span class="card__badge">Módulo · Consultoria · Em breve</span>
+            <span class="card__badge">Consultoria · Em breve</span>
             <h3 class="card__title">Orquestra</h3>
             <p class="card__text">Orquestração de agentes de IA para automação de fluxos complexos.</p>
           </div>
         </a>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 3. PROCESSOS — webpart SP: Highlighted Content ============ -->
-  <section id="processos" class="section section--cinza">
-    <div class="container">
-      <div class="section__header">
-        <span class="fs-label fw-700 text-orange">Categoria</span>
-        <h2 class="section__title">Processos</h2>
-        <p class="section__subtitle">Otimização e análise de processos empresariais.</p>
-      </div>
-      <div class="cards-grid">
-
-        <!-- Score IA (ex-Assessment LEAN) -->
         <a href="produto-assessment-lean.html" class="card">
           <div class="card__image">
             <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-              <rect width="48" height="48" rx="6" fill="#D0D0D0"/>
-              <path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/>
-              <circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              <rect width="48" height="48" rx="6" fill="#D0D0D0"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/><circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
             </svg>
           </div>
           <div class="card__body">
+            <span class="card__badge">Processos</span>
             <h3 class="card__title">Score IA</h3>
-            <p class="card__text">Solução digital para avaliar a maturidade em Inteligência Artificial de organizações — questionário estruturado de 24 perguntas em 6 eixos temáticos, com radar comparativo e recomendações estratégicas.</p>
+            <p class="card__text">Avalia a maturidade em IA de organizações — 24 perguntas, 6 eixos, radar e recomendações.</p>
           </div>
         </a>
 
-        <!-- Observabilidade -->
         <a href="produto-observabilidade.html" class="card">
           <div class="card__image">
             <svg class="img-placeholder__icon" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-              <rect width="48" height="48" rx="6" fill="#D0D0D0"/>
-              <path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/>
-              <circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
+              <rect width="48" height="48" rx="6" fill="#D0D0D0"/><path d="M8 36 L18 20 L26 30 L32 22 L40 36 Z" fill="#BCBCBC"/><circle cx="34" cy="14" r="4" fill="#BCBCBC"/>
             </svg>
           </div>
           <div class="card__body">
+            <span class="card__badge">Processos</span>
             <h3 class="card__title">Observabilidade</h3>
-            <p class="card__text">Transforma o diagnóstico e a resolução de incidentes, migrando de uma abordagem reativa para proativa via coleta e análise de dados de telemetria.</p>
+            <p class="card__text">Diagnóstico e resolução de incidentes de forma proativa via telemetria.</p>
           </div>
         </a>
 
       </div>
     </div>
   </section>
-
 
 </main>
 
@@ -211,8 +199,8 @@
     <nav class="footer__links" aria-label="Navegação do rodapé">
       <a href="imagine-labs.html" class="footer__link">Framework</a>
       <a href="metodologia.html" class="footer__link">Metodologia</a>
-      <a href="produtos.html" class="footer__link">Produtos</a>
       <a href="consultoria.html" class="footer__link">Consultoria</a>
+      <a href="produtos.html" class="footer__link">Produtos</a>
       <a href="hub.html" class="footer__link">Hub de Recursos</a>
     </nav>
     <span class="footer__copy">© 2026 Spassu. Uso interno.</span>

@@ -285,6 +285,7 @@ p               { font-size: var(--fs-body); line-height: 1.6; color: var(--cinz
 .quick-links--5col { grid-template-columns: repeat(5, 1fr); }
 .quick-links--4col { grid-template-columns: repeat(4, 1fr); }
 .quick-links--3col { grid-template-columns: repeat(3, 1fr); }
+.quick-links--2col { grid-template-columns: repeat(2, 1fr); }
 
 .ql-card {
   background: var(--cinza-cl);
