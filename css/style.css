@@ -299,10 +299,6 @@ p               { font-size: var(--fs-body); line-height: 1.6; color: var(--cinz
 }
 .ql-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 
-/* Estado "você está aqui" — card não-clicável (página atual) */
-.ql-card--active { border: 2px solid var(--laranja); cursor: default; }
-.ql-card--active:hover { transform: none; box-shadow: none; }
-
 /* Ícone: círculo avocado (conforme Figma) */
 .ql-card__icon {
   width: 28px;
@@ -1004,4 +1000,132 @@ p               { font-size: var(--fs-body); line-height: 1.6; color: var(--cinz
   .quick-links  { grid-template-columns: repeat(2, 1fr); }
   .metrics-grid { grid-template-columns: 1fr 1fr; }
   .nav__links   { display: none; }
+}
+
+
+/* -----------------------------------------------------------------------
+   18. MAPA DE TELAS (sitemap.html) — diagrama de arquitetura do protótipo
+   ----------------------------------------------------------------------- */
+.sitemap-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-12);
+  background: var(--navy);
+  color: var(--branco);
+  border-radius: var(--radius);
+  padding: var(--sp-24) var(--sp-32);
+  margin-bottom: var(--sp-48);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  transition: opacity .15s;
+}
+.sitemap-root:hover { opacity: .9; }
+.sitemap-root__num {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--avocado);
+  color: var(--navy);
+  font-size: var(--fs-small);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-24);
+  align-items: start;
+}
+
+.sitemap-group {
+  background: var(--branco);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--sp-24);
+}
+.sitemap-group--orphan { border-style: dashed; border-color: #C9C9C9; background: var(--cinza-cl); }
+
+.sitemap-group__header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+  margin-bottom: var(--sp-16);
+  padding-bottom: var(--sp-12);
+  border-bottom: 1px solid var(--border);
+}
+.sitemap-group__header a { flex: 1; }
+
+.sitemap-group__num {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--laranja);
+  color: var(--branco);
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.sitemap-group__title { font-size: var(--fs-h3); color: var(--navy); font-weight: 700; }
+.sitemap-group__hint  { font-size: var(--fs-label); color: var(--cinza); text-transform: uppercase; letter-spacing: .5px; }
+
+.sitemap-group__list { display: flex; flex-direction: column; gap: var(--sp-4); }
+
+.sitemap-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+  padding: var(--sp-8);
+  border-radius: 8px;
+  font-size: var(--fs-small);
+  color: var(--cinza);
+  transition: background .12s, color .12s;
+}
+.sitemap-item:hover { background: var(--cinza-cl); color: var(--navy); }
+
+.sitemap-item__num {
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--cinza-cl);
+  color: var(--cinza);
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.sitemap-item:hover .sitemap-item__num { background: var(--laranja); color: var(--branco); }
+
+@media (max-width: 900px) {
+  .sitemap-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .sitemap-grid { grid-template-columns: 1fr; }
+  .sitemap-root { flex-direction: column; text-align: center; }
+}
+
+
+/* -----------------------------------------------------------------------
+   19. BOTÃO FLUTUANTE — alternar site ↔ mapa de telas
+   ----------------------------------------------------------------------- */
+.map-toggle {
+  position: fixed;
+  bottom: var(--sp-24);
+  right: var(--sp-24);
+  z-index: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-8);
+  background: var(--navy);
+  color: var(--branco);
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  box-shadow: var(--shadow);
+  transition: opacity .15s, transform .1s;
+}
+.map-toggle:hover { opacity: .88; transform: translateY(-2px); }
+.map-toggle__icon { flex-shrink: 0; display: flex; }
+
+@media (max-width: 600px) {
+  .map-toggle { bottom: var(--sp-16); right: var(--sp-16); padding: 10px 16px; }
 }
