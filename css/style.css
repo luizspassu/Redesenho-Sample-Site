@@ -1129,3 +1129,126 @@ p               { font-size: var(--fs-body); line-height: 1.6; color: var(--cinz
 @media (max-width: 600px) {
   .map-toggle { bottom: var(--sp-16); right: var(--sp-16); padding: 10px 16px; }
 }
+
+
+/* -----------------------------------------------------------------------
+   20. GALERIA VISUAL DE TELAS (mapa-visual.html) — thumbnails expansíveis
+   Reaproveita numeração/agrupamento de sitemap.html. Lightbox sem JS
+   (técnica :target) — mantém o protótipo 100% livre de JavaScript.
+   ----------------------------------------------------------------------- */
+.thumb-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-16);
+}
+
+.thumb-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--branco);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform .12s, box-shadow .12s;
+}
+.thumb-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+.thumb-card__frame {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--cinza-cl);
+  border-bottom: 1px solid var(--border);
+}
+.thumb-card__frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+
+.thumb-card__num {
+  position: absolute;
+  top: var(--sp-8);
+  left: var(--sp-8);
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--branco);
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1;
+}
+
+.thumb-card__label { padding: var(--sp-8) var(--sp-12); font-size: var(--fs-small); font-weight: 600; color: var(--navy); }
+
+.thumb-card__expand {
+  position: absolute;
+  top: var(--sp-8);
+  right: var(--sp-8);
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: rgba(32,21,71,.75);
+  color: var(--branco);
+  font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1;
+  transition: background .12s;
+}
+.thumb-card:hover .thumb-card__expand { background: var(--laranja); }
+
+/* Lightbox — aberto via âncora (#id) + :target, sem JavaScript */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5vh var(--sp-24);
+}
+.lightbox:target { display: flex; }
+
+.lightbox__overlay { position: absolute; inset: 0; background: rgba(32,21,71,.85); }
+
+.lightbox__box {
+  position: relative;
+  z-index: 1;
+  background: var(--branco);
+  border-radius: var(--radius);
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.lightbox__caption {
+  padding: var(--sp-12) var(--sp-16);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--navy);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.lightbox__close {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--cinza-cl);
+  color: var(--navy);
+  font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.lightbox__close:hover { background: var(--laranja); color: var(--branco); }
+
+.lightbox__scroll { overflow: auto; }
+.lightbox__scroll img { display: block; width: 100%; height: auto; }
+
+@media (max-width: 900px) {
+  .thumb-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 600px) {
+  .thumb-grid { grid-template-columns: repeat(2, 1fr); }
+}
