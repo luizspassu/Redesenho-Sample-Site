@@ -158,7 +158,8 @@
         <p class="section__subtitle">Cada etapa tem propósito explícito — este é o método utilizado para todo produto de IA.</p>
       </div>
 
-      <div class="etapas-grid">
+      <!-- 3 colunas: Insights (01–06) | 07 Ponto de Transição | Code (08–14) — nativo no SP via seção de 3 colunas -->
+      <div class="etapas-grid" style="grid-template-columns:1fr minmax(150px,0.85fr) 1fr; align-items:stretch;">
 
         <!-- Bloco 1 — Studio INSIGHTS -->
         <div class="etapas-bloco">
@@ -208,17 +209,18 @@
           </div>
         </div>
 
+        <!-- Ponto de Transição — Etapa 07 (coluna central) — webpart SP: Text/Highlighted na coluna do meio -->
+        <div style="align-self:center; background:var(--laranja); color:#fff; border-radius:12px; padding:var(--sp-24); text-align:center;">
+          <div style="font-size:2.2rem; font-weight:700; line-height:1;">07</div>
+          <span class="fs-label fw-700" style="color:#fff; letter-spacing:.5px;">Ponto de Transição</span>
+          <h3 class="card__title" style="color:#fff; margin-top:8px;">Solução Imagine IA</h3>
+          <p class="card__text" style="color:#fff; opacity:.9; margin-top:8px;">Consolidamos a visão; conectamos problema, fluxo, casos de uso e proposta tecnológica.</p>
+        </div>
+
         <!-- Bloco 2 — Studio CODE -->
         <div class="etapas-bloco">
-          <div class="etapas-bloco__header etapas-bloco__header--code">Bloco 2 · Studio CODE (Etapas 07–14)</div>
+          <div class="etapas-bloco__header etapas-bloco__header--code">Bloco 2 · Studio CODE (Etapas 08–14)</div>
 
-          <div class="etapa">
-            <span class="etapa__num">07</span>
-            <div>
-              <div class="etapa__name">Solução Imagine IA</div>
-              <p class="etapa__desc">Consolidamos a visão; conectamos problema, fluxo, casos de uso e proposta tecnológica.</p>
-            </div>
-          </div>
           <div class="etapa">
             <span class="etapa__num">08</span>
             <div>
