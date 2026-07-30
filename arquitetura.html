@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arquitetura de Telas · Diagrama | Studio Imagine Labs — Portal Spassu</title>
+<meta name="description" content="Arquitetura de telas do portal Imagine Labs em diagrama horizontal — todas as páginas e sua hierarquia. Artefato de apoio para a gestão.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* Página de apoio (não simula SP) — Mermaid usado só aqui, fora do site */
+  .diag-wrap { background: var(--branco); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--sp-24); overflow: auto; }
+  .diag-wrap .mermaid { min-width: 1100px; }
+  .diag-legend { display: flex; flex-wrap: wrap; gap: var(--sp-24); margin-top: var(--sp-24); }
+  .diag-legend__item { display: flex; align-items: center; gap: var(--sp-8); font-size: var(--fs-small); color: var(--cinza); }
+  .diag-legend__key { width: 26px; height: 18px; flex-shrink: 0; display: inline-block; border-radius: 4px; }
+  .lk-home { background: var(--navy); }
+  .lk-sec  { background: var(--laranja); }
+  .lk-sub  { background: var(--cinza-cl); border: 1px solid var(--navy); }
+  .lk-off  { background: var(--cinza-cl); border: 1px dashed #C9C9C9; }
+</style>
+</head>
+<body>
+
+<!-- Página de apresentação (não simula o SharePoint — artefato de arquitetura pra gestão) -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo"><img src="assets/symbol-spassu-laranja.svg" alt="Spassu" height="28"></a>
+    <ul class="nav__links">
+      <li><a href="sitemap.html" class="nav__link">Mapa de Telas (texto)</a></li>
+      <li><a href="mapa-visual.html" class="nav__link">Mapa Visual (prints)</a></li>
+      <li><a href="fluxo-bpmn.html" class="nav__link">Fluxo (BPMN)</a></li>
+      <li><a href="index.html" class="nav__link">← Voltar ao site</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="hero hero--centered">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <span class="badge badge--white mb-16">Artefato de apoio · Arquitetura</span>
+        <h1 class="hero__title">Arquitetura de Telas</h1>
+        <p class="hero__subtitle">Todas as páginas do portal e sua hierarquia, em diagrama horizontal. Complementa o <a href="sitemap.html" style="color:inherit; text-decoration:underline;">Mapa de Telas</a> (lista), o <a href="mapa-visual.html" style="color:inherit; text-decoration:underline;">Mapa Visual</a> (prints) e o <a href="fluxo-bpmn.html" style="color:inherit; text-decoration:underline;">Fluxo BPMN</a> (ações).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. DIAGRAMA DE ARQUITETURA ============ -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section__header">
+        <span class="fs-label fw-700 text-orange">Estrutura do portal</span>
+        <h2 class="section__title">Home → seções → páginas internas</h2>
+        <p class="section__subtitle">38 telas: Home + 5 seções de menu (Framework, Metodologia, Consultoria, Produtos, Hub) com suas internas, mais a Galeria (avulsa, fora do menu).</p>
+      </div>
+
+      <div class="diag-wrap">
+        <pre class="mermaid">
+flowchart LR
+  home(["Home"]):::home
+
+  home --> fw["Framework"]:::sec
+  home --> met["Metodologia"]:::sec
+  home --> cons["Consultoria"]:::sec
+  home --> prod["Produtos"]:::sec
+  home --> hub["Hub de Recursos"]:::sec
+  home -. avulsa .-> gal["Galeria"]:::off
+
+  met --> m01["01 · Product Discovery"]:::sub
+  met --> m02["02 · Fluxo AS IS"]:::sub
+  met --> m03["03 · Gaps e Soluções"]:::sub
+  met --> m04["04 · Fluxo TO BE"]:::sub
+  met --> m05["05 · Casos de Uso"]:::sub
+  met --> m06["06 · Protótipo"]:::sub
+  met --> m07["07 · Solução Imagine IA"]:::sub
+  met --> m08["08 · PRD"]:::sub
+  met --> m09["09 · TechSpec"]:::sub
+  met --> m10["10 · Plano Agentic"]:::sub
+  met --> m11["11 · Execução Frontier"]:::sub
+  met --> m12["12 · Validação"]:::sub
+  met --> m13["13 · Governança"]:::sub
+  met --> m14["14 · Implantação"]:::sub
+
+  cons --> c01["Petrobras"]:::sub
+  cons --> c02["TBG · Novo PEG"]:::sub
+  cons --> c03["TBG · Gestão Regulatória"]:::sub
+  cons --> c04["ArcelorMittal"]:::sub
+  cons --> c05["Naturgy"]:::sub
+  cons --> c06["Governança Digital"]:::sub
+  cons --> c07["Transpetro"]:::sub
+  cons --> c08["BNDES · RiscoSAC"]:::sub
+  cons --> c09["BNDES · Design Thinking"]:::sub
+  cons --> c10["Coca-Cola"]:::sub
+  cons --> c11["Em andamento"]:::sub
+  cons --> c12["Proposta de case"]:::sub
+
+  prod --> p01["Spassu Code"]:::sub
+  prod --> p02["Frontier"]:::sub
+  prod --> p03["Orquestra"]:::sub
+  prod --> p04["Score IA"]:::sub
+  prod --> p05["Observabilidade"]:::sub
+
+  classDef home fill:#201547,stroke:#201547,color:#ffffff;
+  classDef sec fill:#FA4616,stroke:#FA4616,color:#ffffff;
+  classDef sub fill:#F7F7F7,stroke:#201547,stroke-width:1px,color:#1A1A1A;
+  classDef off fill:#F7F7F7,stroke:#C9C9C9,stroke-width:1px,stroke-dasharray:4 3,color:#666666;
+        </pre>
+      </div>
+
+      <!-- Legenda -->
+      <div class="diag-legend">
+        <span class="diag-legend__item"><span class="diag-legend__key lk-home"></span> Home</span>
+        <span class="diag-legend__item"><span class="diag-legend__key lk-sec"></span> Seção de menu</span>
+        <span class="diag-legend__item"><span class="diag-legend__key lk-sub"></span> Página interna</span>
+        <span class="diag-legend__item"><span class="diag-legend__key lk-off"></span> Fora do menu (avulsa)</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER (fundo laranja) ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <span class="footer__brand"><img src="assets/logo-imagine-labs-branco.svg" alt="Imagine Labs" height="22"></span>
+    <nav class="footer__links" aria-label="Navegação do rodapé">
+      <a href="imagine-labs.html" class="footer__link">Framework</a>
+      <a href="metodologia.html" class="footer__link">Metodologia</a>
+      <a href="consultoria.html" class="footer__link">Consultoria</a>
+      <a href="produtos.html" class="footer__link">Produtos</a>
+      <a href="hub.html" class="footer__link">Hub de Recursos</a>
+    </nav>
+    <span class="footer__copy">© 2026 Spassu. Uso interno.</span>
+  </div>
+</footer>
+
+<!-- Botão flutuante — alternar de volta pro site -->
+<a href="index.html" class="map-toggle">
+  <span class="map-toggle__icon">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="3" cy="3" r="2" fill="currentColor"/>
+      <circle cx="13" cy="3" r="2" fill="currentColor"/>
+      <circle cx="8" cy="13" r="2" fill="currentColor"/>
+      <path d="M3 5v2a2 2 0 002 2h1M13 5v2a2 2 0 01-2 2h-1" stroke="currentColor" stroke-width="1.3"/>
+    </svg>
+  </span>
+  Voltar ao Site
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: { fontFamily: 'Poppins, Segoe UI, sans-serif', fontSize: '13px' },
+    flowchart: { curve: 'basis', nodeSpacing: 28, rankSpacing: 90, htmlLabels: true }
+  });
+</script>
+
+</body>
+</html>

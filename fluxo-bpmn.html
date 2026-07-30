@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fluxo de Navegação · BPMN | Studio Imagine Labs — Portal Spassu</title>
+<meta name="description" content="Fluxo de navegação e ações do portal Imagine Labs em notação BPMN — artefato de apoio para a gestão.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* Página de apoio (não simula SP) — Mermaid usado só aqui, fora do site */
+  .bpmn-wrap { background: var(--branco); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--sp-24); overflow-x: auto; }
+  .bpmn-wrap .mermaid { display: flex; justify-content: center; min-width: 720px; }
+  .bpmn-legend { display: flex; flex-wrap: wrap; gap: var(--sp-24); margin-top: var(--sp-24); }
+  .bpmn-legend__item { display: flex; align-items: center; gap: var(--sp-8); font-size: var(--fs-small); color: var(--cinza); }
+  .bpmn-legend__key { width: 26px; height: 18px; flex-shrink: 0; display: inline-block; }
+  .lk-event { border: 2px solid #27AE60; border-radius: 50%; }
+  .lk-end   { border: 4px solid var(--laranja); border-radius: 50%; }
+  .lk-gw    { border: 2px solid var(--laranja); transform: rotate(45deg); width: 16px; height: 16px; }
+  .lk-menu  { background: var(--navy); border-radius: 4px; }
+  .lk-action{ background: var(--cinza-cl); border: 1px solid var(--navy); border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<!-- Página de apresentação (não simula o SharePoint — artefato de arquitetura pra gestão) -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo"><img src="assets/symbol-spassu-laranja.svg" alt="Spassu" height="28"></a>
+    <ul class="nav__links">
+      <li><a href="sitemap.html" class="nav__link">Mapa de Telas (texto)</a></li>
+      <li><a href="mapa-visual.html" class="nav__link">Mapa Visual (prints)</a></li>
+      <li><a href="arquitetura.html" class="nav__link">Arquitetura (diagrama)</a></li>
+      <li><a href="index.html" class="nav__link">← Voltar ao site</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="hero hero--centered">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <span class="badge badge--white mb-16">Artefato de apoio · BPMN</span>
+        <h1 class="hero__title">Fluxo de Navegação</h1>
+        <p class="hero__subtitle">Os caminhos e ações do portal em notação BPMN — do momento em que o usuário entra até concluir cada objetivo. Complementa o <a href="sitemap.html" style="color:inherit; text-decoration:underline;">Mapa de Telas</a> e o <a href="mapa-visual.html" style="color:inherit; text-decoration:underline;">Mapa Visual</a>: aqui o foco é o fluxo das ações, não a lista de telas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. DIAGRAMA BPMN ============ -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section__header">
+        <span class="fs-label fw-700 text-orange">Fluxo de ações do portal</span>
+        <h2 class="section__title">Jornadas do usuário</h2>
+        <p class="section__subtitle">A partir da Home, um ponto de decisão direciona para as quatro grandes jornadas do portal. Cada jornada termina em um objetivo concluído.</p>
+      </div>
+
+      <div class="bpmn-wrap">
+        <pre class="mermaid">
+flowchart TD
+  inicio((Usuário<br/>entra)):::evStart --> home["Home · Portal"]:::menu
+  home --> gw{"O que o<br/>usuário busca?"}:::gw
+
+  gw -->|Entender o método| fw["Framework"]:::menu
+  fw --> met["Metodologia"]:::menu
+  met --> et["Explora as 14 etapas<br/>Insights → 07 Transição → Code"]:::action
+  et --> fim1((Método<br/>compreendido)):::evEnd
+
+  gw -->|Ver resultados / cases| cons["Consultoria"]:::menu
+  cons --> caso["Abre um case"]:::action
+  caso --> acoes["Vê resultados + Acesso rápido<br/>Miro · Documentos · Figma"]:::action
+  acoes --> fim2((Case<br/>avaliado)):::evEnd
+  acoes -. cross-link .-> pint
+
+  gw -->|Conhecer produtos| prod["Produtos"]:::menu
+  prod --> pint["Produto interno<br/>Frontier · Orquestra · Spassu Code · Score IA · Observabilidade"]:::action
+  pint --> cta["Ação: Conhecer o Frontier"]:::action
+  cta --> fim3((Produto<br/>conhecido)):::evEnd
+
+  gw -->|Buscar recursos| hub["Hub de Recursos"]:::menu
+  hub --> rec["Documentos · Ferramentas · Dados · Wiki"]:::action
+  rec --> fim4((Recurso<br/>acessado)):::evEnd
+
+  classDef evStart fill:#ffffff,stroke:#27AE60,stroke-width:2px,color:#1A1A1A;
+  classDef evEnd fill:#ffffff,stroke:#FA4616,stroke-width:4px,color:#1A1A1A;
+  classDef gw fill:#ffffff,stroke:#FA4616,stroke-width:2px,color:#201547;
+  classDef menu fill:#201547,stroke:#201547,color:#ffffff;
+  classDef action fill:#F7F7F7,stroke:#201547,stroke-width:1px,color:#1A1A1A;
+        </pre>
+      </div>
+
+      <!-- Legenda BPMN -->
+      <div class="bpmn-legend">
+        <span class="bpmn-legend__item"><span class="bpmn-legend__key lk-event"></span> Evento de início</span>
+        <span class="bpmn-legend__item"><span class="bpmn-legend__key lk-gw"></span> Gateway (decisão)</span>
+        <span class="bpmn-legend__item"><span class="bpmn-legend__key lk-menu"></span> Página / item de menu</span>
+        <span class="bpmn-legend__item"><span class="bpmn-legend__key lk-action"></span> Ação do usuário</span>
+        <span class="bpmn-legend__item"><span class="bpmn-legend__key lk-end"></span> Objetivo concluído (fim)</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER (fundo laranja) ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <span class="footer__brand"><img src="assets/logo-imagine-labs-branco.svg" alt="Imagine Labs" height="22"></span>
+    <nav class="footer__links" aria-label="Navegação do rodapé">
+      <a href="imagine-labs.html" class="footer__link">Framework</a>
+      <a href="metodologia.html" class="footer__link">Metodologia</a>
+      <a href="consultoria.html" class="footer__link">Consultoria</a>
+      <a href="produtos.html" class="footer__link">Produtos</a>
+      <a href="hub.html" class="footer__link">Hub de Recursos</a>
+    </nav>
+    <span class="footer__copy">© 2026 Spassu. Uso interno.</span>
+  </div>
+</footer>
+
+<!-- Botão flutuante — alternar de volta pro site -->
+<a href="index.html" class="map-toggle">
+  <span class="map-toggle__icon">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="3" cy="3" r="2" fill="currentColor"/>
+      <circle cx="13" cy="3" r="2" fill="currentColor"/>
+      <circle cx="8" cy="13" r="2" fill="currentColor"/>
+      <path d="M3 5v2a2 2 0 002 2h1M13 5v2a2 2 0 01-2 2h-1" stroke="currentColor" stroke-width="1.3"/>
+    </svg>
+  </span>
+  Voltar ao Site
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: { fontFamily: 'Poppins, Segoe UI, sans-serif', fontSize: '14px' },
+    flowchart: { curve: 'basis', nodeSpacing: 40, rankSpacing: 55, htmlLabels: true }
+  });
+</script>
+
+</body>
+</html>
