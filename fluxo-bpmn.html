@@ -21,6 +21,22 @@
   .lk-gw    { border: 2px solid var(--laranja); transform: rotate(45deg); width: 16px; height: 16px; }
   .lk-menu  { background: var(--navy); border-radius: 4px; }
   .lk-action{ background: var(--cinza-cl); border: 1px solid var(--navy); border-radius: 4px; }
+
+  /* Faixa de personas */
+  .persona-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-16); }
+  .persona-card { display: flex; gap: var(--sp-12); align-items: flex-start; padding: var(--sp-16); border: 1px solid var(--border); border-left-width: 4px; border-radius: 12px; background: var(--branco); }
+  .persona-card__emoji { font-size: 22px; line-height: 1; flex-shrink: 0; }
+  .persona-card__name { display: block; font-weight: 700; color: var(--navy); font-size: 14px; }
+  .persona-card__role { display: block; font-size: 11px; color: var(--cinza); margin: 2px 0 6px; }
+  .persona-card__journeys { display: block; font-size: 11px; font-weight: 600; color: var(--laranja); }
+  .persona-card--gestor      { border-left-color: var(--navy); }
+  .persona-card--dev         { border-left-color: var(--laranja); }
+  .persona-card--editorial   { border-left-color: var(--avocado); }
+  .persona-card--colaborador { border-left-color: #999999; }
+  @media (max-width: 860px) { .persona-band { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Etiquetas das jornadas — texto normal; emojis de persona em destaque (via style inline) */
+  .bpmn-wrap .edgeLabel, .bpmn-wrap .edgeLabel p { font-size: 14px !important; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -30,11 +46,11 @@
   <div class="nav__inner">
     <a href="index.html" class="nav__logo"><img src="assets/symbol-spassu-laranja.svg" alt="Spassu" height="28"></a>
     <ul class="nav__links">
-      <li><a href="sitemap.html" class="nav__link">Mapa de Telas (texto)</a></li>
-      <li><a href="mapa-visual.html" class="nav__link">Mapa Visual (prints)</a></li>
-      <li><a href="arquitetura.html" class="nav__link">Arquitetura (diagrama)</a></li>
-      <li><a href="index.html" class="nav__link">← Voltar ao site</a></li>
+      <li><a href="mapa-visual.html" class="nav__link">Mapa Visual</a></li>
+      <li><a href="arquitetura.html" class="nav__link">Arquitetura</a></li>
+      <li><a href="fluxo-bpmn.html" class="nav__link nav__link--active">Fluxo (BPMN)</a></li>
     </ul>
+    <a href="index.html" class="nav__back">← Voltar ao site</a>
   </div>
 </nav>
 
@@ -46,12 +62,57 @@
       <div class="hero__content">
         <span class="badge badge--white mb-16">Artefato de apoio · BPMN</span>
         <h1 class="hero__title">Fluxo de Navegação</h1>
-        <p class="hero__subtitle">Os caminhos e ações do portal em notação BPMN — do momento em que o usuário entra até concluir cada objetivo. Complementa o <a href="sitemap.html" style="color:inherit; text-decoration:underline;">Mapa de Telas</a> e o <a href="mapa-visual.html" style="color:inherit; text-decoration:underline;">Mapa Visual</a>: aqui o foco é o fluxo das ações, não a lista de telas.</p>
+        <p class="hero__subtitle">Os caminhos e ações do portal em notação BPMN — do momento em que o usuário entra até concluir cada objetivo. Complementa o <a href="mapa-visual.html" style="color:inherit; text-decoration:underline;">Mapa Visual</a>: aqui o foco é o fluxo das ações, não a lista de telas.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ 2. DIAGRAMA BPMN ============ -->
+  <!-- ============ 2. FAIXA DE PERSONAS ============ -->
+  <section class="section section--white" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="section__header">
+        <span class="fs-label fw-700 text-orange">Quem percorre o fluxo</span>
+        <h2 class="section__title">As 4 personas</h2>
+        <p class="section__subtitle">No diagrama abaixo, cada jornada é marcada com o(s) perfil(is) que a percorre(m). Gestor e Editorial são, na essência, publicadores/mantenedores — aqui aparecem nas jornadas de consumo que também usam.</p>
+      </div>
+      <div class="persona-band">
+        <div class="persona-card persona-card--gestor">
+          <span class="persona-card__emoji">🧑‍💼</span>
+          <div>
+            <span class="persona-card__name">Gestor de TI</span>
+            <span class="persona-card__role">Publicador estratégico · semanal · alta</span>
+            <span class="persona-card__journeys">Cases · Produtos</span>
+          </div>
+        </div>
+        <div class="persona-card persona-card--dev">
+          <span class="persona-card__emoji">💻</span>
+          <div>
+            <span class="persona-card__name">Desenvolvedor</span>
+            <span class="persona-card__role">Consultor recorrente · diária · alta</span>
+            <span class="persona-card__journeys">Método · Recursos</span>
+          </div>
+        </div>
+        <div class="persona-card persona-card--editorial">
+          <span class="persona-card__emoji">🛠️</span>
+          <div>
+            <span class="persona-card__name">Equipe Editorial</span>
+            <span class="persona-card__role">Mantenedor do portal · diária · crítica</span>
+            <span class="persona-card__journeys">Recursos</span>
+          </div>
+        </div>
+        <div class="persona-card persona-card--colaborador">
+          <span class="persona-card__emoji">👤</span>
+          <div>
+            <span class="persona-card__name">Colaborador Interno</span>
+            <span class="persona-card__role">Visitante curioso · mensal · média</span>
+            <span class="persona-card__journeys">Método · Cases · Produtos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. DIAGRAMA BPMN ============ -->
   <section class="section section--white">
     <div class="container">
       <div class="section__header">
@@ -66,23 +127,23 @@ flowchart TD
   inicio((Usuário<br/>entra)):::evStart --> home["Home · Portal"]:::menu
   home --> gw{"O que o<br/>usuário busca?"}:::gw
 
-  gw -->|Entender o método| fw["Framework"]:::menu
+  gw -->|"Entender o método<br/><span style='font-size:26px'>💻 👤</span>"| fw["Framework"]:::menu
   fw --> met["Metodologia"]:::menu
   met --> et["Explora as 14 etapas<br/>Insights → 07 Transição → Code"]:::action
   et --> fim1((Método<br/>compreendido)):::evEnd
 
-  gw -->|Ver resultados / cases| cons["Consultoria"]:::menu
+  gw -->|"Ver resultados / cases<br/><span style='font-size:26px'>🧑‍💼 👤</span>"| cons["Consultoria"]:::menu
   cons --> caso["Abre um case"]:::action
   caso --> acoes["Vê resultados + Acesso rápido<br/>Miro · Documentos · Figma"]:::action
   acoes --> fim2((Case<br/>avaliado)):::evEnd
   acoes -. cross-link .-> pint
 
-  gw -->|Conhecer produtos| prod["Produtos"]:::menu
+  gw -->|"Conhecer produtos<br/><span style='font-size:26px'>👤 🧑‍💼</span>"| prod["Produtos"]:::menu
   prod --> pint["Produto interno<br/>Frontier · Orquestra · Spassu Code · Score IA · Observabilidade"]:::action
   pint --> cta["Ação: Conhecer o Frontier"]:::action
   cta --> fim3((Produto<br/>conhecido)):::evEnd
 
-  gw -->|Buscar recursos| hub["Hub de Recursos"]:::menu
+  gw -->|"Buscar recursos<br/><span style='font-size:26px'>💻 🛠️</span>"| hub["Hub de Recursos"]:::menu
   hub --> rec["Documentos · Ferramentas · Dados · Wiki"]:::action
   rec --> fim4((Recurso<br/>acessado)):::evEnd
 
@@ -140,7 +201,8 @@ flowchart TD
   mermaid.initialize({
     startOnLoad: true,
     theme: 'base',
-    themeVariables: { fontFamily: 'Poppins, Segoe UI, sans-serif', fontSize: '14px' },
+    securityLevel: 'loose',
+    themeVariables: { fontFamily: 'Poppins, Segoe UI, sans-serif', fontSize: '15px' },
     flowchart: { curve: 'basis', nodeSpacing: 40, rankSpacing: 55, htmlLabels: true }
   });
 </script>

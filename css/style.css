@@ -183,6 +183,24 @@ p               { font-size: var(--fs-body); line-height: 1.6; color: var(--cinz
 .nav__link:hover,
 .nav__link--active { color: var(--laranja); }
 
+/* Botão "Voltar ao site" — destacado à direita da top bar dos mapas de apoio */
+.nav__back {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--laranja);
+  border-radius: 8px;
+  padding: 8px 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .15s ease;
+}
+.nav__back:hover { background: #E03D10; }
+
 
 /* -----------------------------------------------------------------------
    6. HERO — LARANJA, dois painéis (HOME)

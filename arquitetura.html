@@ -4,15 +4,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arquitetura de Telas · Diagrama | Studio Imagine Labs — Portal Spassu</title>
-<meta name="description" content="Arquitetura de telas do portal Imagine Labs em diagrama horizontal — todas as páginas e sua hierarquia. Artefato de apoio para a gestão.">
+<meta name="description" content="Arquitetura de telas do portal Imagine Labs — diagrama horizontal interativo com conectores: clique numa célula para ver as seções da página.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <style>
-  /* Página de apoio (não simula SP) — Mermaid usado só aqui, fora do site */
-  .diag-wrap { background: var(--branco); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--sp-24); overflow: auto; }
-  .diag-wrap .mermaid { min-width: 1100px; }
+  /* Página de apoio (não simula SP) — diagrama em caixas HTML + conectores SVG, sem libs */
+
+  /* --- Mapa em diagrama (prancha com pan + zoom, estilo Miro) --- */
+  .arch { position: relative; background: var(--branco); border: 1px solid var(--border); border-radius: var(--radius); height: min(72vh, 640px); overflow: hidden; cursor: grab; touch-action: none; }
+  .arch.is-panning { cursor: grabbing; }
+  .arch__canvas { position: absolute; top: 0; left: 0; width: max-content; padding: var(--sp-32) var(--sp-40); transform-origin: 0 0; will-change: transform; }
+  .arch__svg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: visible; }
+  .arch__controls { position: absolute; top: 12px; right: 12px; z-index: 5; display: flex; flex-direction: column; gap: 6px; }
+  .arch__btn { width: 34px; height: 34px; border: 1px solid var(--border); background: #fff; border-radius: 8px; font-size: 18px; font-weight: 700; color: var(--navy); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(32,21,71,.1); line-height: 1; }
+  .arch__btn:hover { background: var(--cinza-cl); }
+  .arch__btn--reset { font-size: 12px; font-weight: 600; }
+  .arch__btn--fs { font-size: 15px; }
+  .arch:fullscreen { height: 100%; width: 100%; border-radius: 0; border: none; }
+  .arch:-webkit-full-screen { height: 100%; width: 100%; border-radius: 0; border: none; }
+  .arch__svg .conn { fill: none; stroke: #AAB0BE; stroke-width: 1.5; }
+  .arch__svg .conn--dash { stroke-dasharray: 5 4; }
+  .arch__home { position: relative; z-index: 1; display: flex; justify-content: center; margin-bottom: 54px; }
+  .arch__groups { position: relative; z-index: 1; display: flex; gap: 40px; align-items: flex-start; }
+  .arch__group { display: flex; flex-direction: column; align-items: center; }
+  .arch__group > .node--sec, .arch__group > .node--off { margin-bottom: 46px; }
+  .arch__group-children { display: flex; gap: 12px; align-items: flex-start; }
+
+  .node { position: relative; display: block; border-radius: 10px; padding: 11px 30px 11px 14px; text-decoration: none; font-weight: 600; font-size: 13.5px; line-height: 1.25; border: 1px solid; transition: box-shadow .15s ease, transform .15s ease; }
+  .node:hover { box-shadow: 0 5px 16px rgba(32,21,71,.16); transform: translateY(-1px); }
+  .node__plus { position: absolute; top: 50%; right: 9px; transform: translateY(-50%); width: 17px; height: 17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; line-height: 1; }
+  .node--home { background: var(--navy); color: #fff; border-color: var(--navy); min-width: 170px; text-align: center; font-size: 15px; }
+  .node--home .node__plus { background: rgba(255,255,255,.18); color: #fff; }
+  .node--sec { background: var(--laranja); color: #fff; border-color: var(--laranja); min-width: 150px; text-align: center; }
+  .node--sec .node__plus { background: rgba(255,255,255,.22); color: #fff; }
+  .node--sub { background: var(--cinza-cl); color: #1A1A1A; border-color: var(--navy); min-width: 118px; max-width: 150px; text-align: center; padding: 11px 26px 11px 12px; }
+  .node--sub .node__plus { background: var(--navy); color: #fff; }
+  .node--off { background: var(--cinza-cl); color: var(--cinza); border: 1px dashed #C9C9C9; min-width: 120px; text-align: center; }
+  .node--off .node__plus { background: var(--cinza); color: #fff; }
+  .arch__hint { font-size: var(--fs-small); color: var(--cinza); margin-top: var(--sp-16); display: flex; align-items: center; gap: var(--sp-8); }
+
+  /* --- Legenda --- */
   .diag-legend { display: flex; flex-wrap: wrap; gap: var(--sp-24); margin-top: var(--sp-24); }
   .diag-legend__item { display: flex; align-items: center; gap: var(--sp-8); font-size: var(--fs-small); color: var(--cinza); }
   .diag-legend__key { width: 26px; height: 18px; flex-shrink: 0; display: inline-block; border-radius: 4px; }
@@ -20,6 +53,35 @@
   .lk-sec  { background: var(--laranja); }
   .lk-sub  { background: var(--cinza-cl); border: 1px solid var(--navy); }
   .lk-off  { background: var(--cinza-cl); border: 1px dashed #C9C9C9; }
+
+  /* --- Modal / popup (abre ao clicar na célula) — :target, sem JS --- */
+  .modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; padding: var(--sp-24); z-index: 200; }
+  .modal:target { display: flex; }
+  .modal__backdrop { position: absolute; inset: 0; background: rgba(32,21,71,.55); }
+  .modal__card { position: relative; background: #fff; border-radius: 14px; max-width: 560px; width: 100%; max-height: 84vh; overflow: auto; padding: var(--sp-32) var(--sp-32) var(--sp-24); box-shadow: 0 24px 64px rgba(0,0,0,.32); }
+  .modal__close { position: absolute; top: 12px; right: 16px; font-size: 26px; line-height: 1; color: var(--cinza); text-decoration: none; }
+  .modal__close:hover { color: var(--navy); }
+  .modal__eyebrow { font-size: 12px; font-weight: 700; color: var(--laranja); text-transform: uppercase; letter-spacing: .04em; }
+  .modal__title { font-size: 21px; color: var(--navy); margin: 4px 0 2px; }
+  .modal__meta { font-size: var(--fs-small); color: var(--cinza); margin-bottom: var(--sp-16); }
+  .modal__card ol { margin: 0; padding-left: 1.3em; }
+  .modal__card li { margin: 6px 0; color: #1A1A1A; }
+  .modal__note { margin-top: var(--sp-16); padding: var(--sp-12) var(--sp-16); background: var(--cinza-cl); border-radius: 8px; font-size: var(--fs-small); color: var(--cinza); }
+
+  /* --- Acordeão "lá embaixo" (referência browseável) --- */
+  .pg-group { margin-bottom: var(--sp-32); }
+  .pg-group__label { font-size: var(--fs-label); font-weight: 700; color: var(--laranja); text-transform: uppercase; letter-spacing: .04em; margin-bottom: var(--sp-12); display: block; }
+  .pg-detail { border: 1px solid var(--border); border-radius: 12px; background: var(--branco); overflow: hidden; margin-bottom: var(--sp-12); }
+  .pg-detail--unified { border-left: 3px solid var(--laranja); }
+  .pg-detail > summary { cursor: pointer; padding: var(--sp-16) var(--sp-24); font-weight: 700; color: var(--navy); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: var(--sp-16); }
+  .pg-detail > summary::-webkit-details-marker { display: none; }
+  .pg-detail > summary::after { content: "+"; color: var(--laranja); font-size: 1.3em; line-height: 1; flex-shrink: 0; }
+  .pg-detail[open] > summary::after { content: "\2013"; }
+  .pg-detail__meta { font-size: var(--fs-small); font-weight: 400; color: var(--cinza); }
+  .pg-detail__body { padding: 0 var(--sp-24) var(--sp-20); }
+  .pg-detail__body ol { margin: 0; padding-left: 1.3em; }
+  .pg-detail__body li { margin: 6px 0; color: #1A1A1A; }
+  .pg-detail__note { margin-top: var(--sp-12); padding: var(--sp-12) var(--sp-16); background: var(--cinza-cl); border-radius: 8px; font-size: var(--fs-small); color: var(--cinza); }
 </style>
 </head>
 <body>
@@ -29,11 +91,11 @@
   <div class="nav__inner">
     <a href="index.html" class="nav__logo"><img src="assets/symbol-spassu-laranja.svg" alt="Spassu" height="28"></a>
     <ul class="nav__links">
-      <li><a href="sitemap.html" class="nav__link">Mapa de Telas (texto)</a></li>
-      <li><a href="mapa-visual.html" class="nav__link">Mapa Visual (prints)</a></li>
+      <li><a href="mapa-visual.html" class="nav__link">Mapa Visual</a></li>
+      <li><a href="arquitetura.html" class="nav__link nav__link--active">Arquitetura</a></li>
       <li><a href="fluxo-bpmn.html" class="nav__link">Fluxo (BPMN)</a></li>
-      <li><a href="index.html" class="nav__link">← Voltar ao site</a></li>
     </ul>
+    <a href="index.html" class="nav__back">← Voltar ao site</a>
   </div>
 </nav>
 
@@ -45,72 +107,109 @@
       <div class="hero__content">
         <span class="badge badge--white mb-16">Artefato de apoio · Arquitetura</span>
         <h1 class="hero__title">Arquitetura de Telas</h1>
-        <p class="hero__subtitle">Todas as páginas do portal e sua hierarquia, em diagrama horizontal. Complementa o <a href="sitemap.html" style="color:inherit; text-decoration:underline;">Mapa de Telas</a> (lista), o <a href="mapa-visual.html" style="color:inherit; text-decoration:underline;">Mapa Visual</a> (prints) e o <a href="fluxo-bpmn.html" style="color:inherit; text-decoration:underline;">Fluxo BPMN</a> (ações).</p>
+        <p class="hero__subtitle">Diagrama horizontal e <strong>interativo</strong>: clique em qualquer célula (o "+") para abrir as seções daquela página. A mesma referência aparece, browseável, na seção ao final. Complementa o <a href="mapa-visual.html" style="color:inherit; text-decoration:underline;">Mapa Visual</a> e o <a href="fluxo-bpmn.html" style="color:inherit; text-decoration:underline;">Fluxo BPMN</a>.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ 2. DIAGRAMA DE ARQUITETURA ============ -->
+  <!-- ============ 2. DIAGRAMA INTERATIVO ============ -->
   <section class="section section--white">
     <div class="container">
       <div class="section__header">
         <span class="fs-label fw-700 text-orange">Estrutura do portal</span>
         <h2 class="section__title">Home → seções → páginas internas</h2>
-        <p class="section__subtitle">38 telas: Home + 5 seções de menu (Framework, Metodologia, Consultoria, Produtos, Hub) com suas internas, mais a Galeria (avulsa, fora do menu).</p>
+        <p class="section__subtitle">38 telas: Home + 5 seções de menu com suas internas, mais a Galeria (avulsa). Clique numa célula para ver o que tem dentro.</p>
       </div>
 
-      <div class="diag-wrap">
-        <pre class="mermaid">
-flowchart LR
-  home(["Home"]):::home
+      <div class="arch" id="archViewport">
+        <div class="arch__controls">
+          <button type="button" class="arch__btn" id="zoomIn" aria-label="Aproximar">+</button>
+          <button type="button" class="arch__btn" id="zoomOut" aria-label="Afastar">−</button>
+          <button type="button" class="arch__btn arch__btn--reset" id="zoomReset" aria-label="Ajustar à tela">Fit</button>
+          <button type="button" class="arch__btn arch__btn--fs" id="fsToggle" aria-label="Tela cheia" title="Tela cheia">⛶</button>
+        </div>
+        <div class="arch__canvas" id="archCanvas">
+          <svg class="arch__svg" id="archSvg" aria-hidden="true"></svg>
 
-  home --> fw["Framework"]:::sec
-  home --> met["Metodologia"]:::sec
-  home --> cons["Consultoria"]:::sec
-  home --> prod["Produtos"]:::sec
-  home --> hub["Hub de Recursos"]:::sec
-  home -. avulsa .-> gal["Galeria"]:::off
+          <!-- Tier 1: Home -->
+          <div class="arch__home">
+            <a href="#m-home" id="nodeHome" class="node node--home">Home<span class="node__plus">+</span></a>
+          </div>
 
-  met --> m01["01 · Product Discovery"]:::sub
-  met --> m02["02 · Fluxo AS IS"]:::sub
-  met --> m03["03 · Gaps e Soluções"]:::sub
-  met --> m04["04 · Fluxo TO BE"]:::sub
-  met --> m05["05 · Casos de Uso"]:::sub
-  met --> m06["06 · Protótipo"]:::sub
-  met --> m07["07 · Solução Imagine IA"]:::sub
-  met --> m08["08 · PRD"]:::sub
-  met --> m09["09 · TechSpec"]:::sub
-  met --> m10["10 · Plano Agentic"]:::sub
-  met --> m11["11 · Execução Frontier"]:::sub
-  met --> m12["12 · Validação"]:::sub
-  met --> m13["13 · Governança"]:::sub
-  met --> m14["14 · Implantação"]:::sub
+          <!-- Tier 2 + 3: seções (com suas páginas) -->
+          <div class="arch__groups">
 
-  cons --> c01["Petrobras"]:::sub
-  cons --> c02["TBG · Novo PEG"]:::sub
-  cons --> c03["TBG · Gestão Regulatória"]:::sub
-  cons --> c04["ArcelorMittal"]:::sub
-  cons --> c05["Naturgy"]:::sub
-  cons --> c06["Governança Digital"]:::sub
-  cons --> c07["Transpetro"]:::sub
-  cons --> c08["BNDES · RiscoSAC"]:::sub
-  cons --> c09["BNDES · Design Thinking"]:::sub
-  cons --> c10["Coca-Cola"]:::sub
-  cons --> c11["Em andamento"]:::sub
-  cons --> c12["Proposta de case"]:::sub
+            <!-- Framework (sem internas) -->
+            <div class="arch__group">
+              <a href="#m-framework" class="node node--sec">Framework<span class="node__plus">+</span></a>
+            </div>
 
-  prod --> p01["Spassu Code"]:::sub
-  prod --> p02["Frontier"]:::sub
-  prod --> p03["Orquestra"]:::sub
-  prod --> p04["Score IA"]:::sub
-  prod --> p05["Observabilidade"]:::sub
+            <!-- Metodologia -->
+            <div class="arch__group">
+              <a href="#m-metodologia" class="node node--sec">Metodologia<span class="node__plus">+</span></a>
+              <div class="arch__group-children">
+                <a href="#m-etapa-insights" class="node node--sub">01 · Product Discovery<span class="node__plus">+</span></a>
+                <a href="#m-etapa-insights" class="node node--sub">02 · Fluxo AS-IS<span class="node__plus">+</span></a>
+                <a href="#m-etapa-insights" class="node node--sub">03 · Gaps e Soluções<span class="node__plus">+</span></a>
+                <a href="#m-etapa-insights" class="node node--sub">04 · Fluxo TO-BE<span class="node__plus">+</span></a>
+                <a href="#m-etapa-insights" class="node node--sub">05 · Casos de Uso<span class="node__plus">+</span></a>
+                <a href="#m-etapa-insights" class="node node--sub">06 · Protótipo<span class="node__plus">+</span></a>
+                <a href="#m-etapa-insights" class="node node--sub">07 · Solução Imagine IA<span class="node__plus">+</span></a>
+                <a href="#m-etapa-code" class="node node--sub">08 · PRD<span class="node__plus">+</span></a>
+                <a href="#m-etapa-code" class="node node--sub">09 · TechSpec<span class="node__plus">+</span></a>
+                <a href="#m-etapa-code" class="node node--sub">10 · Plano Agentic<span class="node__plus">+</span></a>
+                <a href="#m-etapa-code" class="node node--sub">11 · Execução Frontier<span class="node__plus">+</span></a>
+                <a href="#m-etapa-code" class="node node--sub">12 · Validação<span class="node__plus">+</span></a>
+                <a href="#m-etapa-code" class="node node--sub">13 · Governança<span class="node__plus">+</span></a>
+                <a href="#m-etapa-code" class="node node--sub">14 · Implantação<span class="node__plus">+</span></a>
+              </div>
+            </div>
 
-  classDef home fill:#201547,stroke:#201547,color:#ffffff;
-  classDef sec fill:#FA4616,stroke:#FA4616,color:#ffffff;
-  classDef sub fill:#F7F7F7,stroke:#201547,stroke-width:1px,color:#1A1A1A;
-  classDef off fill:#F7F7F7,stroke:#C9C9C9,stroke-width:1px,stroke-dasharray:4 3,color:#666666;
-        </pre>
+            <!-- Consultoria -->
+            <div class="arch__group">
+              <a href="#m-consultoria" class="node node--sec">Consultoria<span class="node__plus">+</span></a>
+              <div class="arch__group-children">
+                <a href="#m-case" class="node node--sub">Petrobras<span class="node__plus">+</span></a>
+                <a href="#m-case" class="node node--sub">TBG · Novo PEG<span class="node__plus">+</span></a>
+                <a href="#m-case" class="node node--sub">TBG · Gestão Regulatória<span class="node__plus">+</span></a>
+                <a href="#m-case" class="node node--sub">ArcelorMittal<span class="node__plus">+</span></a>
+                <a href="#m-case" class="node node--sub">Naturgy<span class="node__plus">+</span></a>
+                <a href="#m-case" class="node node--sub">Governança Digital<span class="node__plus">+</span></a>
+                <a href="#m-case" class="node node--sub">Transpetro<span class="node__plus">+</span></a>
+                <a href="#m-case" class="node node--sub">BNDES · RiscoSAC<span class="node__plus">+</span></a>
+                <a href="#m-case" class="node node--sub">BNDES · Design Thinking<span class="node__plus">+</span></a>
+                <a href="#m-case" class="node node--sub">Coca-Cola<span class="node__plus">+</span></a>
+                <a href="#m-case" class="node node--sub">Em andamento<span class="node__plus">+</span></a>
+                <a href="#m-case" class="node node--sub">Proposta de case<span class="node__plus">+</span></a>
+              </div>
+            </div>
+
+            <!-- Produtos -->
+            <div class="arch__group">
+              <a href="#m-produtos" class="node node--sec">Produtos<span class="node__plus">+</span></a>
+              <div class="arch__group-children">
+                <a href="#m-frontier" class="node node--sub">Frontier<span class="node__plus">+</span></a>
+                <a href="#m-orquestra" class="node node--sub">Orquestra<span class="node__plus">+</span></a>
+                <a href="#m-spassu-code" class="node node--sub">Spassu Code<span class="node__plus">+</span></a>
+                <a href="#m-score-ia" class="node node--sub">Score IA<span class="node__plus">+</span></a>
+                <a href="#m-observabilidade" class="node node--sub">Observabilidade<span class="node__plus">+</span></a>
+              </div>
+            </div>
+
+            <!-- Hub (sem internas) -->
+            <div class="arch__group">
+              <a href="#m-hub" class="node node--sec">Hub de Recursos<span class="node__plus">+</span></a>
+            </div>
+
+            <!-- Galeria (avulsa) -->
+            <div class="arch__group">
+              <a href="#m-galeria" class="node node--off">Galeria<span class="node__plus">+</span></a>
+            </div>
+
+          </div>
+        </div>
       </div>
+      <p class="arch__hint">Arraste para mover · role o scroll do mouse para dar zoom · botões + / − / Fit · clique numa célula para abrir o conteúdo.</p>
 
       <!-- Legenda -->
       <div class="diag-legend">
@@ -122,7 +221,329 @@ flowchart LR
     </div>
   </section>
 
+  <!-- ============ 3. CONTEÚDO DE CADA PÁGINA (referência browseável) ============ -->
+  <section class="section section--cinza">
+    <div class="container">
+      <div class="section__header">
+        <span class="fs-label fw-700 text-orange">O que tem dentro de cada página</span>
+        <h2 class="section__title">Seções por página</h2>
+        <p class="section__subtitle">Mesma informação dos cards do mapa, aqui em lista. As páginas que seguem um mesmo template aparecem em <strong>uma célula unificada</strong> (borda laranja). Fonte: conteúdo real das páginas + <em>SP Webpart Map</em>.</p>
+      </div>
+
+      <!-- HOME -->
+      <div class="pg-group">
+        <span class="pg-group__label">Home</span>
+        <details class="pg-detail">
+          <summary>Home <span class="pg-detail__meta">index.html · 6 seções</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero — headline + métricas + CTA</li>
+              <li>Acesso rápido — 5 seções principais (Quick Links)</li>
+              <li>Ambidestria Digital 360° — 2 cards (Lean Digital + Imagine Labs)</li>
+              <li>Seção Frontier — fundo navy, imagem + 4 pilares + métricas</li>
+              <li>Prêmios ISG — logos + texto</li>
+              <li>Case em destaque — preview Petrobras → Consultoria</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- FRAMEWORK -->
+      <div class="pg-group">
+        <span class="pg-group__label">Framework</span>
+        <details class="pg-detail">
+          <summary>Framework <span class="pg-detail__meta">imagine-labs.html · 6 seções</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero</li>
+              <li>Quatro pilares que orientam a transformação</li>
+              <li>O que a transformação precisa superar</li>
+              <li>Oito eixos de transformação</li>
+              <li>Indicadores para medição de valor ao negócio</li>
+              <li>O framework em ação</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- METODOLOGIA -->
+      <div class="pg-group">
+        <span class="pg-group__label">Metodologia · 14 etapas</span>
+
+        <details class="pg-detail">
+          <summary>Metodologia (índice) <span class="pg-detail__meta">metodologia.html · 4 seções</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero laranja — Framework Imagine AI</li>
+              <li>Dois Studios — 2 cards (Insights + IA)</li>
+              <li>Diagrama das 14 etapas (visual)</li>
+              <li>As 14 etapas em detalhe — número + nome + descrição</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="pg-detail pg-detail--unified">
+          <summary>Etapa · bloco Insights (01–07) <span class="pg-detail__meta">template único · vale para as etapas 01 a 07</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero — breadcrumb + título + subtítulo</li>
+              <li>Trilha das 14 etapas (etapa atual destacada)</li>
+              <li>Sobre a etapa (o que é)</li>
+              <li>Objetivo / Importância (faixa de destaque)</li>
+              <li>Quando aplicar (lista)</li>
+              <li>Atividades envolvidas (lista numerada)</li>
+              <li>Visualização — fluxograma BPMN / matriz / diagrama</li>
+              <li>Ferramentas de apoio</li>
+              <li>Entregáveis</li>
+              <li>Fontes de dados</li>
+              <li>Modelo de relatório — mockup + lista numerada</li>
+              <li>CTA anterior / próxima etapa</li>
+            </ol>
+            <div class="pg-detail__note"><strong>Variante — Etapa 01 (Discovery):</strong> no lugar dos blocos "Quando aplicar → Modelo de relatório" usa 3 cards de Metodologias + Artefato de apoio (Board Miro).</div>
+          </div>
+        </details>
+
+        <details class="pg-detail pg-detail--unified">
+          <summary>Etapa · bloco Code (08–14) <span class="pg-detail__meta">template único · vale para as etapas 08 a 14</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero — breadcrumb + título + subtítulo</li>
+              <li>Trilha das 14 etapas (etapa atual destacada)</li>
+              <li>O que é a etapa (conceito)</li>
+              <li>Blocos de conceito / boas práticas do tema</li>
+              <li>Como a Spassu faz — com agentes de IA</li>
+              <li>Esta etapa no Frontier (contexto do produto)</li>
+              <li>Visualização / síntese do fluxo</li>
+              <li>CTA anterior / próxima etapa</li>
+            </ol>
+            <div class="pg-detail__note">Estrutura narrativa (conceito geral → aplicação Spassu/Frontier), distinta do bloco Insights. Confirmar rótulos finais com a Spassu.</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- CONSULTORIA -->
+      <div class="pg-group">
+        <span class="pg-group__label">Consultoria · 12 cases</span>
+
+        <details class="pg-detail">
+          <summary>Consultoria (índice) <span class="pg-detail__meta">consultoria.html · 4 seções</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero — Cases de Transformação</li>
+              <li>Filtro por status — Finalizados / Em andamento / Propostas</li>
+              <li>Cards de cases — cliente + resumo + métricas</li>
+              <li>Métricas em destaque (números grandes)</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="pg-detail pg-detail--unified">
+          <summary>Página de Case (detalhe) <span class="pg-detail__meta">template único · vale para as 12 páginas de case</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero — título + status + resumo</li>
+              <li>Acesso rápido — Board Miro · Relatório final · Documentos · Protótipo/Figma</li>
+              <li>Contexto · Solução · Resultados · Escalabilidade (narrativa)</li>
+              <li>Produto relacionado (cross-link Consultoria → Produtos)</li>
+              <li>CTA final</li>
+            </ol>
+            <div class="pg-detail__note">A barra "Acesso rápido" aparece nos 9 cases reais; nos placeholders (Coca-Cola, Em andamento, Proposta) ela entra quando houver conteúdo/URLs.</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- PRODUTOS -->
+      <div class="pg-group">
+        <span class="pg-group__label">Produtos · 5 produtos</span>
+
+        <details class="pg-detail">
+          <summary>Produtos (índice) <span class="pg-detail__meta">produtos.html · 3 seções</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero — Nossas Plataformas e Ferramentas</li>
+              <li>Grid de produtos (cards)</li>
+              <li>Orquestra — card "Em breve"</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="pg-detail">
+          <summary>Frontier <span class="pg-detail__meta">frontier.html · 7 seções</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero — "Não é o modelo de IA…"</li>
+              <li>Os 4 pilares (grid 2×2)</li>
+              <li>Métricas SDLC (4 números)</li>
+              <li>98% devs usando IA (stat destacada)</li>
+              <li>Demo / screenshot Frontier</li>
+              <li>Pipeline 7 fases</li>
+              <li>CTA — Solicitar Acesso</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="pg-detail">
+          <summary>Orquestra <span class="pg-detail__meta">orquestra.html · 3 seções · "Em breve"</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero navy — Orquestra + badge "Em breve"</li>
+              <li>O que é o Orquestra</li>
+              <li>CTA — Acesso Antecipado</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="pg-detail">
+          <summary>Spassu Code <span class="pg-detail__meta">produto-spassu-code.html · 4 seções</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero</li>
+              <li>A plataforma dos dois módulos</li>
+              <li>Desenvolvimento assistido por IA</li>
+              <li>Case relacionado</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="pg-detail">
+          <summary>Score IA <span class="pg-detail__meta">produto-assessment-lean.html · 3 seções</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero</li>
+              <li>Como funciona</li>
+              <li>6 Eixos Temáticos · 24 Perguntas</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="pg-detail">
+          <summary>Observabilidade <span class="pg-detail__meta">produto-observabilidade.html · 2 seções · em construção</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero</li>
+              <li>Objetivo</li>
+            </ol>
+            <div class="pg-detail__note">Página ainda enxuta — a estrutura completa será definida quando o conteúdo for aprovado.</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- HUB -->
+      <div class="pg-group">
+        <span class="pg-group__label">Hub de Recursos</span>
+        <details class="pg-detail">
+          <summary>Hub de Recursos <span class="pg-detail__meta">hub.html · 4 seções</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero</li>
+              <li>Categorias de acesso rápido — Docs · Ferramentas · Dados · Wiki · P&amp;D · Lei do Bem</li>
+              <li>Biblioteca de documentos</li>
+              <li>Documentos recentes</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- GALERIA -->
+      <div class="pg-group">
+        <span class="pg-group__label">Galeria · avulsa (fora do menu)</span>
+        <details class="pg-detail">
+          <summary>Galeria <span class="pg-detail__meta">galeria.html · 4 seções</span></summary>
+          <div class="pg-detail__body">
+            <ol>
+              <li>Hero</li>
+              <li>Soluções de Inteligência Artificial</li>
+              <li>Processos</li>
+              <li>Produtos</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
 </main>
+
+<!-- ============ MODAIS (abrem ao clicar nas células do mapa) ============ -->
+<div id="m-home" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Home</span><h3 class="modal__title">Home</h3><p class="modal__meta">index.html · 6 seções</p>
+  <ol><li>Hero — headline + métricas + CTA</li><li>Acesso rápido — 5 seções principais (Quick Links)</li><li>Ambidestria Digital 360° — 2 cards (Lean Digital + Imagine Labs)</li><li>Seção Frontier — fundo navy, imagem + 4 pilares + métricas</li><li>Prêmios ISG — logos + texto</li><li>Case em destaque — preview Petrobras → Consultoria</li></ol>
+</div></div>
+
+<div id="m-framework" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Seção de menu</span><h3 class="modal__title">Framework</h3><p class="modal__meta">imagine-labs.html · 6 seções</p>
+  <ol><li>Hero</li><li>Quatro pilares que orientam a transformação</li><li>O que a transformação precisa superar</li><li>Oito eixos de transformação</li><li>Indicadores para medição de valor ao negócio</li><li>O framework em ação</li></ol>
+</div></div>
+
+<div id="m-metodologia" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Seção de menu</span><h3 class="modal__title">Metodologia (índice)</h3><p class="modal__meta">metodologia.html · 4 seções</p>
+  <ol><li>Hero laranja — Framework Imagine AI</li><li>Dois Studios — 2 cards (Insights + IA)</li><li>Diagrama das 14 etapas (visual)</li><li>As 14 etapas em detalhe — número + nome + descrição</li></ol>
+</div></div>
+
+<div id="m-etapa-insights" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Template único · etapas 01–07</span><h3 class="modal__title">Etapa · bloco Insights</h3><p class="modal__meta">Vale para as etapas 01 a 07 · 12 seções</p>
+  <ol><li>Hero — breadcrumb + título + subtítulo</li><li>Trilha das 14 etapas (etapa atual destacada)</li><li>Sobre a etapa (o que é)</li><li>Objetivo / Importância (faixa de destaque)</li><li>Quando aplicar (lista)</li><li>Atividades envolvidas (lista numerada)</li><li>Visualização — fluxograma BPMN / matriz / diagrama</li><li>Ferramentas de apoio</li><li>Entregáveis</li><li>Fontes de dados</li><li>Modelo de relatório — mockup + lista numerada</li><li>CTA anterior / próxima etapa</li></ol>
+  <div class="modal__note"><strong>Variante — Etapa 01 (Discovery):</strong> no lugar dos blocos "Quando aplicar → Modelo de relatório" usa 3 cards de Metodologias + Artefato de apoio (Board Miro).</div>
+</div></div>
+
+<div id="m-etapa-code" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Template único · etapas 08–14</span><h3 class="modal__title">Etapa · bloco Code</h3><p class="modal__meta">Vale para as etapas 08 a 14</p>
+  <ol><li>Hero — breadcrumb + título + subtítulo</li><li>Trilha das 14 etapas (etapa atual destacada)</li><li>O que é a etapa (conceito)</li><li>Blocos de conceito / boas práticas do tema</li><li>Como a Spassu faz — com agentes de IA</li><li>Esta etapa no Frontier (contexto do produto)</li><li>Visualização / síntese do fluxo</li><li>CTA anterior / próxima etapa</li></ol>
+  <div class="modal__note">Estrutura narrativa (conceito geral → aplicação Spassu/Frontier), distinta do bloco Insights. Confirmar rótulos finais com a Spassu.</div>
+</div></div>
+
+<div id="m-consultoria" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Seção de menu</span><h3 class="modal__title">Consultoria (índice)</h3><p class="modal__meta">consultoria.html · 4 seções</p>
+  <ol><li>Hero — Cases de Transformação</li><li>Filtro por status — Finalizados / Em andamento / Propostas</li><li>Cards de cases — cliente + resumo + métricas</li><li>Métricas em destaque (números grandes)</li></ol>
+</div></div>
+
+<div id="m-case" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Template único · 12 cases</span><h3 class="modal__title">Página de Case (detalhe)</h3><p class="modal__meta">Vale para as 12 páginas de case · 5 seções</p>
+  <ol><li>Hero — título + status + resumo</li><li>Acesso rápido — Board Miro · Relatório final · Documentos · Protótipo/Figma</li><li>Contexto · Solução · Resultados · Escalabilidade (narrativa)</li><li>Produto relacionado (cross-link Consultoria → Produtos)</li><li>CTA final</li></ol>
+  <div class="modal__note">A barra "Acesso rápido" aparece nos 9 cases reais; nos placeholders (Coca-Cola, Em andamento, Proposta) ela entra quando houver conteúdo/URLs.</div>
+</div></div>
+
+<div id="m-produtos" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Seção de menu</span><h3 class="modal__title">Produtos (índice)</h3><p class="modal__meta">produtos.html · 3 seções</p>
+  <ol><li>Hero — Nossas Plataformas e Ferramentas</li><li>Grid de produtos (cards)</li><li>Orquestra — card "Em breve"</li></ol>
+</div></div>
+
+<div id="m-frontier" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Produto</span><h3 class="modal__title">Frontier</h3><p class="modal__meta">frontier.html · 7 seções</p>
+  <ol><li>Hero — "Não é o modelo de IA…"</li><li>Os 4 pilares (grid 2×2)</li><li>Métricas SDLC (4 números)</li><li>98% devs usando IA (stat destacada)</li><li>Demo / screenshot Frontier</li><li>Pipeline 7 fases</li><li>CTA — Solicitar Acesso</li></ol>
+</div></div>
+
+<div id="m-orquestra" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Produto · "Em breve"</span><h3 class="modal__title">Orquestra</h3><p class="modal__meta">orquestra.html · 3 seções</p>
+  <ol><li>Hero navy — Orquestra + badge "Em breve"</li><li>O que é o Orquestra</li><li>CTA — Acesso Antecipado</li></ol>
+</div></div>
+
+<div id="m-spassu-code" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Produto</span><h3 class="modal__title">Spassu Code</h3><p class="modal__meta">produto-spassu-code.html · 4 seções</p>
+  <ol><li>Hero</li><li>A plataforma dos dois módulos</li><li>Desenvolvimento assistido por IA</li><li>Case relacionado</li></ol>
+</div></div>
+
+<div id="m-score-ia" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Produto</span><h3 class="modal__title">Score IA</h3><p class="modal__meta">produto-assessment-lean.html · 3 seções</p>
+  <ol><li>Hero</li><li>Como funciona</li><li>6 Eixos Temáticos · 24 Perguntas</li></ol>
+</div></div>
+
+<div id="m-observabilidade" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Produto · em construção</span><h3 class="modal__title">Observabilidade</h3><p class="modal__meta">produto-observabilidade.html · 2 seções</p>
+  <ol><li>Hero</li><li>Objetivo</li></ol>
+  <div class="modal__note">Página ainda enxuta — estrutura completa a definir quando o conteúdo for aprovado.</div>
+</div></div>
+
+<div id="m-hub" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Seção de menu</span><h3 class="modal__title">Hub de Recursos</h3><p class="modal__meta">hub.html · 4 seções</p>
+  <ol><li>Hero</li><li>Categorias de acesso rápido — Docs · Ferramentas · Dados · Wiki · P&amp;D · Lei do Bem</li><li>Biblioteca de documentos</li><li>Documentos recentes</li></ol>
+</div></div>
+
+<div id="m-galeria" class="modal"><a href="#" class="modal__backdrop" aria-label="Fechar"></a><div class="modal__card"><a href="#" class="modal__close" aria-label="Fechar">×</a>
+  <span class="modal__eyebrow">Avulsa · fora do menu</span><h3 class="modal__title">Galeria</h3><p class="modal__meta">galeria.html · 4 seções</p>
+  <ol><li>Hero</li><li>Soluções de Inteligência Artificial</li><li>Processos</li><li>Produtos</li></ol>
+</div></div>
 
 <!-- ============ FOOTER (fundo laranja) ============ -->
 <footer class="footer">
@@ -152,14 +573,96 @@ flowchart LR
   Voltar ao Site
 </a>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<!-- Prancha do diagrama: conectores SVG + pan/zoom (código próprio, sem lib) -->
 <script>
-  mermaid.initialize({
-    startOnLoad: true,
-    theme: 'base',
-    themeVariables: { fontFamily: 'Poppins, Segoe UI, sans-serif', fontSize: '13px' },
-    flowchart: { curve: 'basis', nodeSpacing: 28, rankSpacing: 90, htmlLabels: true }
+(function () {
+  var viewport = document.getElementById('archViewport');
+  var canvas = document.getElementById('archCanvas');
+  var svg = document.getElementById('archSvg');
+  if (!viewport || !canvas || !svg) return;
+  var SVGNS = 'http://www.w3.org/2000/svg';
+
+  /* ---- Conectores: coordenadas de LAYOUT (offset), imunes ao zoom ---- */
+  function layoutPos(el) { var x = 0, y = 0; while (el && el !== canvas) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; } return { x: x, y: y }; }
+  function point(el, edge) { var p = layoutPos(el); return { x: p.x + el.offsetWidth / 2, y: edge === 'top' ? p.y : p.y + el.offsetHeight }; }
+  function elbow(a, b) { var m = a.y + (b.y - a.y) / 2; return 'M' + a.x + ',' + a.y + ' V' + m + ' H' + b.x + ' V' + b.y; }
+  function line(d, dashed) { var p = document.createElementNS(SVGNS, 'path'); p.setAttribute('d', d); p.setAttribute('class', 'conn' + (dashed ? ' conn--dash' : '')); svg.appendChild(p); }
+  function drawConnectors() {
+    svg.setAttribute('width', canvas.offsetWidth); svg.setAttribute('height', canvas.offsetHeight);
+    svg.setAttribute('viewBox', '0 0 ' + canvas.offsetWidth + ' ' + canvas.offsetHeight);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var home = document.getElementById('nodeHome'); if (!home) return;
+    var hb = point(home, 'bottom');
+    canvas.querySelectorAll('.arch__group').forEach(function (g) {
+      var sec = g.querySelector('.node--sec, .node--off'); if (!sec) return;
+      line(elbow(hb, point(sec, 'top')), sec.classList.contains('node--off'));
+      var sb = point(sec, 'bottom');
+      g.querySelectorAll('.arch__group-children > .node').forEach(function (k) { line(elbow(sb, point(k, 'top'))); });
+    });
+  }
+
+  /* ---- Pan + zoom (prancha) ---- */
+  var scale = 1, tx = 0, ty = 0, MIN = 0.2, MAX = 2.5;
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function apply() { canvas.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')'; }
+  function fit() {
+    var vw = viewport.clientWidth, vh = viewport.clientHeight, cw = canvas.offsetWidth, ch = canvas.offsetHeight;
+    scale = clamp(Math.min(vw / cw, vh / ch, 1), MIN, MAX);
+    tx = (vw - cw * scale) / 2; ty = Math.max((vh - ch * scale) / 2, 0); apply();
+  }
+  function zoomAt(px, py, factor) {
+    var ns = clamp(scale * factor, MIN, MAX);
+    tx = px - (px - tx) * ns / scale; ty = py - (py - ty) * ns / scale; scale = ns; apply();
+  }
+
+  viewport.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    var r = viewport.getBoundingClientRect();
+    zoomAt(e.clientX - r.left, e.clientY - r.top, e.deltaY < 0 ? 1.12 : 1 / 1.12);
+  }, { passive: false });
+
+  var down = false, moved = false, sx = 0, sy = 0, stx = 0, sty = 0;
+  viewport.addEventListener('pointerdown', function (e) {
+    if (e.button !== 0 || e.target.closest('.arch__controls')) return;
+    down = true; moved = false; sx = e.clientX; sy = e.clientY; stx = tx; sty = ty;
   });
+  window.addEventListener('pointermove', function (e) {
+    if (!down) return;
+    var dx = e.clientX - sx, dy = e.clientY - sy;
+    if (!moved && Math.abs(dx) + Math.abs(dy) > 4) { moved = true; viewport.classList.add('is-panning'); }
+    if (moved) { tx = stx + dx; ty = sty + dy; apply(); }
+  });
+  window.addEventListener('pointerup', function () { down = false; viewport.classList.remove('is-panning'); });
+  canvas.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+
+  document.getElementById('zoomIn').addEventListener('click', function () { zoomAt(viewport.clientWidth / 2, viewport.clientHeight / 2, 1.2); });
+  document.getElementById('zoomOut').addEventListener('click', function () { zoomAt(viewport.clientWidth / 2, viewport.clientHeight / 2, 1 / 1.2); });
+  document.getElementById('zoomReset').addEventListener('click', fit);
+
+  var fsBtn = document.getElementById('fsToggle');
+  fsBtn.addEventListener('click', function () {
+    var full = document.fullscreenElement || document.webkitFullscreenElement;
+    if (!full) { (viewport.requestFullscreen || viewport.webkitRequestFullscreen).call(viewport); }
+    else { (document.exitFullscreen || document.webkitExitFullscreen).call(document); }
+  });
+  var archModals = Array.prototype.slice.call(document.querySelectorAll('.modal'));
+  function onFsChange() {
+    var full = document.fullscreenElement || document.webkitFullscreenElement;
+    fsBtn.textContent = full ? '×' : '⛶';
+    fsBtn.setAttribute('title', full ? 'Sair da tela cheia' : 'Tela cheia');
+    var host = full ? viewport : document.body;   // modais precisam viver dentro da prancha em tela cheia
+    archModals.forEach(function (m) { host.appendChild(m); });
+    window.requestAnimationFrame(fit);
+  }
+  document.addEventListener('fullscreenchange', onFsChange);
+  document.addEventListener('webkitfullscreenchange', onFsChange);
+
+  function init() { drawConnectors(); fit(); }
+  init();
+  window.addEventListener('load', init);
+  window.addEventListener('resize', function () { window.requestAnimationFrame(init); });
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(init); }
+})();
 </script>
 
 </body>
